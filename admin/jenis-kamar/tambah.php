@@ -1,17 +1,27 @@
 <?php include "../../config.php";
 
 if (isset($_POST['submit'])) {
-    $jenis_kamar_id = $_POST['jenis_kamar_id'];
-    $tempat_tidur_id = $_POST['tempat_tidur_id'];
-    $no_kamar = $_POST['no_kamar'];
-    $lantai = $_POST['lantai'];
-    $bebas_rokok = $_POST['bebas_rokok'];
-    $status_kamar = $_POST['status_kamar'];
-    $tgl_masuk = $_POST['tgl_masuk'];
-    $tgl_keluar = $_POST['tgl_keluar'];
+    $jenis_kamar = $_POST['jenis_kamar'];
+    $kode_jenis_kamar = $_POST['kode_jenis_kamar'];
+    $kapasitas = $_POST['kapasitas'];
+    $deskripsi_kamar = $_POST['deskripsi_kamar'];
+    
+    //foto
+	$namafoto = $_FILES['file']['name'];
+	$tipe = $_FILES['file']['type'];
+    $ukuran = $_FILES['file']['size'];
+    $lokasi = $_FILES['file']['tmp_name'];
+    $tmp = "images/".$namafoto;
+
+    if (strlen($namafoto)>0) {
+		//upload
+		if (is_uploaded_file($lokasi)) {
+			move_uploaded_file ($lokasi, $tmp);
+		}
+	}
 
     //insert ke tabel
-    $query = "INSERT INTO kamar	values('','$jenis_kamar_id', '$tempat_tidur_id', '$no_kamar', '$lantai', '$bebas_rokok','$status_kamar', '$tgl_masuk', '$tgl_keluar')";
+    $query = "INSERT INTO jenis_kamar	values('','$jenis_kamar', '$kode_jenis_kamar', '$kapasitas', '$deskripsi_kamar', '$nama_foto')";
 
     // $sql = mysqli_query($conn, "INSERT INTO kamar (jenis_kamar_id, tempat_tidur_id, no_kamar, lantai, bebas_rokok, status_kamar, status_kamar, tgl_masuk, tgl_keluar) 
     // VALUES('$jenis_kamar_id', '$tempat_tidur_id', '$no_kamar', '$lantai', '$bebas_rokok','$status_kamar', '$tgl_masuk', '$tgl_keluar')");
@@ -19,7 +29,7 @@ if (isset($_POST['submit'])) {
 
     $sql = mysqli_query ($conn, $query) or die (mysqli_error());
 	if ($sql) {
-        $pesan = "Data kamar berhasil ditambah!";
+        $pesan = "Data jenis kamar berhasil ditambah!";
         header('Location: index.php?pesan=". $pesan ."');	
 	} else {
 		echo "<h2><font color=red>Data gagal ditambahkan</font></h2>";	
@@ -49,7 +59,7 @@ if (isset($_POST['submit'])) {
             <main>
                 <div class="container-fluid px-4">
                     
-                    <h1 class="mt-4">Data Kamar</h1>
+                    <h1 class="mt-4">Data Jenis Kamar</h1>
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table me-1"></i>
@@ -61,79 +71,37 @@ if (isset($_POST['submit'])) {
                                 <div class="row mb-3">
                                     <div class="col-md-6">
                                         <div class="form-floating mb-3 mb-md-0">
-                                            <select class="form-select" aria-label="Default select example" name="jenis_kamar_id">
-                                                <option selected>-- Pilih Jenis Kamar --</option>
-                                                <?php
-                                                $query = "SELECT jenis_kamar_id, jenis_kamar FROM jenis_kamar ORDER BY jenis_kamar_id";
-                                                $sql = mysqli_query($conn, $query);
-
-                                                while ($hasil = mysqli_fetch_array($sql)) {
-                                                    $jenis_kamar = $hasil['jenis_kamar'];
-                                                    $jenis_kamar_id = $hasil['jenis_kamar_id'];
-                                                ?>
-                                                    <option value="<?php echo $jenis_kamar_id ?>"><?php echo $jenis_kamar ?></option>
-                                                <?php } ?>
-                                            </select>
-                                            <label for="jenis_kamar_id">Jenis Kamar</label>
-                                        </div>
+                                            <input class="form-control" id="jenis_kamar" type="text" placeholder="Masukkan Jenis Kamar" name="jenis_kamar">
+                                                <label for="jenis_kamar">Jenis Kamar</label>
+                                            </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating mb-3 mb-md-0">
-                                            <select class="form-select" aria-label="Default select example" name="tempat_tidur_id">
-                                                <option selected>-- Pilih Tempat Tidur --</option>
-                                                <?php
-                                                $query = "SELECT tempat_tidur_id, jenis_tempat_tidur FROM tempat_tidur ORDER BY tempat_tidur_id";
-                                                $sql = mysqli_query($conn, $query);
-
-                                                while ($hasil = mysqli_fetch_array($sql)) {
-                                                    $jenis_tempat_tidur = $hasil['jenis_tempat_tidur'];
-                                                    $tempat_tidur_id = $hasil['tempat_tidur_id'];
-                                                ?>
-                                                    <option value="<?php echo $tempat_tidur_id ?>"><?php echo $jenis_tempat_tidur ?></option>
-                                                <?php } ?>
-                                            </select>
-                                            <label for="tempat_tidur_id">Tempat Tidur</label>
+                                            <input class="form-control" id="kode_jenis_kamar" type="text" placeholder="Masukkan Kode Jenis Kamar" name="kode_jenis_kamar">
+                                            <label for="kode_jenis_kamar">Kode Jenis Kamar</label>
+                                            
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-md-4">
                                         <div class="form-floating mb-3 mb-md-0">
-                                            <input class="form-control" id="no_kamar" type="text" placeholder="Masukkan Nomor Kamar" name="no_kamar">
-                                            <label for="no_kamar">Nomor Kamar</label>
+                                            <input class="form-control" id="kapasitas" type="text" placeholder="Masukkan Jumlah Kapasitas" name="kapasitas">
+                                            <label for="kapasitas">Kapasitas</label>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-8">
                                         <div class="form-floating">
-                                            <input class="form-control" id="lantai" type="text" placeholder="Masukkan Lantai" name="lantai">
-                                            <label for="lantai">Lantai</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="inputFirstName">Bebas Rokok</label>
-                                        <div class="form-floating">
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="bebas_rokok" id="bebas_rokok" value="0">
-                                                <label class="form-check-label" for="bebas_rokok">Ya</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="bebas_rokok" id="bebas_rokok" value="1">
-                                                <label class="form-check-label" for="bebas_rokok">Tidak</label>
-                                            </div>
+                                            <input class="form-control" id="foto" type="file" placeholder="Masukkan Foto" name="foto">
+                                            <label for="foto">Masukkan Foto</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <div class="form-floating mb-3 mb-md-0">
-                                            <input class="form-control" id="tgl_masuk" type="date" placeholder="" name="tgl_masuk">
+                                    <div class="col-md-12">
+                                        <div class="form-floating mb-3">
+                                            <textarea class="form-control" name="" id="" cols="" rows="20"></textarea>
                                             <label for="tgl_masuk">Tanggal Masuk</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input class="form-control" id="tgl_keluar" type="date" placeholder="" name="tgl_keluar">
-                                            <label for="tgl_keluar">Tanggal Keluar</label>
                                         </div>
                                     </div>
                                 </div>

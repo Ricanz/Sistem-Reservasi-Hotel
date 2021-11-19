@@ -98,7 +98,7 @@ include "../../config.php";
                                             <td><?php echo $tgl_keluar; ?></td>
                                             <td style="text-align: center;">
                                             <a href="delete.php?id=<?php echo $kamar_id; ?>" class="btn btn-danger">Hapus</a>
-                                            <button type="button" class="btn btn-success">Sunting</button>
+                                            <a href="edit.php?id=<?php echo $kamar_id; ?>" class="btn btn-warning">Sunting</a>
                                             </td>
                                         </tr>
                                     <?php $no++; }?>
