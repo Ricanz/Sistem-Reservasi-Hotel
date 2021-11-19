@@ -69,7 +69,7 @@ include "../../config.php";
                                 <tbody>
                                     <?php
                                     $no = 1;
-                                    $query = "SELECT * FROM users  INNER JOIN roles ON users.role_id = roles.role_id";
+                                    $query = "SELECT * FROM users ";
                                     $sql = mysqli_query($conn, $query);
 
                                     while ($hasil = mysqli_fetch_array ($sql)) {

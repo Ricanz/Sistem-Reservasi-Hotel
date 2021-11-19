@@ -1,7 +1,7 @@
 <?php include "../../config.php";
 
 if (isset($_POST['submit'])) {
-    $role_id = $_POST['role_id'];
+    $role = $_POST['role'];
     $nama = $_POST['nama'];
     $email = $_POST['email'];
     $username = $_POST['username'];
@@ -10,7 +10,7 @@ if (isset($_POST['submit'])) {
     $no_hp = $_POST['no_hp'];
 
     //insert ke tabel
-    $query = "INSERT INTO users	values('','$role_id', '$nama', '$email', '$username','$password', '$no_ktp', '$no_hp')";
+    $query = "INSERT INTO users	values('','$role', '$nama', '$email', '$username','$password', '$no_ktp', '$no_hp')";
 
     // $sql = mysqli_query($conn, "INSERT INTO kamar (jenis_kamar_id, tempat_tidur_id, no_kamar, lantai, bebas_rokok, status_kamar, status_kamar, tgl_masuk, tgl_keluar) 
     // VALUES('$jenis_kamar_id', '$tempat_tidur_id', '$no_kamar', '$lantai', '$bebas_rokok','$status_kamar', '$tgl_masuk', '$tgl_keluar')");
@@ -34,7 +34,7 @@ if (isset($_POST['submit'])) {
 
 
 <!-- Head -->
-<?php include 'layout/head.php' ?>
+<?php include '../layout/head.php' ?>
 
 <body class="sb-nav-fixed">
     <!-- Navbar -->
@@ -66,20 +66,12 @@ if (isset($_POST['submit'])) {
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating mb-3 mb-md-0">
-                                            <select class="form-select" aria-label="Default select example" name="role_id">
-                                                <option selected>-- Pilih Role Pengguna --</option>
-                                                <?php
-                                                $query = "SELECT role_id, role FROM roles ORDER BY role_id";
-                                                $sql = mysqli_query($conn, $query);
-
-                                                while ($hasil = mysqli_fetch_array($sql)) {
-                                                    $role = $hasil['role'];
-                                                    $role_id = $hasil['role_id'];
-                                                ?>
-                                                    <option value="<?php echo $role_id ?>"><?php echo $role ?></option>
-                                                <?php } ?>
+                                        <select class="form-select" aria-label="Default select example" name="role">
+                                                <option value="admin">Admin</option>
+                                                <option value="manager">Manager</option>
+                                                <option value="staff">Staff</option>
                                             </select>
-                                            <label for="role_id">Tempat Tidur</label>
+                                            <label for="role">Tempat Tidur</label>
                                         </div>
                                     </div>
                                 </div>
@@ -134,7 +126,7 @@ if (isset($_POST['submit'])) {
         </div>
     </div>
     <!-- Scripts -->
-    <?php include 'layout/scripts.php' ?>
+    <?php include '../layout/scripts.php' ?>
 
 </body>
 
