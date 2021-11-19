@@ -1,5 +1,6 @@
 <?php
 include "../../config.php";
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,6 +52,7 @@ include "../../config.php";
                                         <th>Status Kamar</th>
                                         <th>Tanggal Masuk</th>
                                         <th>Tanggal Keluar</th>
+                                        <th style="text-align: center;">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
@@ -63,7 +65,7 @@ include "../../config.php";
                                         <th>Bebas Rokok</th>
                                         <th>Status Kamar</th>
                                         <th>Tanggal Masuk</th>
-                                        <th>Tanggal Keluar</th>
+                                        <th style="text-align: center;">Aksi</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
@@ -73,6 +75,7 @@ include "../../config.php";
                                     $sql = mysqli_query($conn, $query);
 
                                     while ($hasil = mysqli_fetch_array ($sql)) {
+                                        $kamar_id = $hasil['kamar_id'];
                                         $jenis_kamar = $hasil['jenis_kamar'];
                                         $jenis_tempat_tidur = $hasil['jenis_tempat_tidur'];
                                         $no_kamar = $hasil['no_kamar'];
@@ -92,7 +95,10 @@ include "../../config.php";
                                             <td><?php echo $status_kamar; ?></td>
                                             <td><?php echo $tgl_masuk; ?></td>
                                             <td><?php echo $tgl_keluar; ?></td>
-                                            <td>$320,800</td>
+                                            <td style="text-align: center;">
+                                            <a href="index.php?page=delete&kamar_id=<?php echo $kamar_id; ?>" class="btn btn-danger">Hapus</a>
+                                            <button type="button" class="btn btn-success">Sunting</button>
+                                            </td>
                                         </tr>
                                     <?php $no++; }?>
 
