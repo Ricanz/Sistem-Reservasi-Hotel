@@ -20,6 +20,20 @@ include "../../config.php";
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Data Tarif</h1>
                         <div class="card mb-4">
+                        <?php
+                    error_reporting(0);
+                        if($_GET['pesan'] != NULL){
+                            echo "
+                            <div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                                <strong> Berhasil </strong>
+                                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                            </div>";
+                        }
+                        else{
+
+                        }
+                            
+                    ?>
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
                                 DataTable Example
@@ -31,6 +45,7 @@ include "../../config.php";
                                             <th>No</th>
                                             <th>Jenis Kamar</th>
                                             <th>Harga</th>
+                                            <th style="text-align: center;">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -38,6 +53,7 @@ include "../../config.php";
                                             <th>No</th>
                                             <th>Jenis Kamar</th>
                                             <th>Harga</th>
+                                            <th style="text-align: center;">Aksi</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -49,6 +65,7 @@ include "../../config.php";
                                     while ($hasil = mysqli_fetch_array ($sql)) {
                                         $jenis_kamar_id = $hasil['kamarr'];
                                         $tarif = $hasil['tarif'];
+                                        $tarif_id = $hasil['tarif_id'];
                                         
                                         
                                     ?>
@@ -56,7 +73,10 @@ include "../../config.php";
                                             <td><?php echo $no; ?></td>
                                             <td><?php echo $jenis_kamar_id; ?></td>
                                             <td><?php echo $tarif; ?></td>
-                                            <td>$320,800</td>
+                                            <td style="text-align: center;">
+                                            <a href="delete.php?id=<?php echo $tarif_id; ?>" class="btn btn-danger">Hapus</a>
+                                            <a href="edit.php?id=<?php echo $tarif_id; ?>" class="btn btn-success">Sunting</a>
+                                            </td>
                                         </tr>
                                     <?php $no++; }?>
                                     </tbody>

@@ -60,7 +60,7 @@
                 <div class="collapse" id="tarif" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link" href="../tarif/index.php">Data Tarif</a>
-                        <a class="nav-link" href="layout-sidenav-light.html">Tambah Data Tarif</a>
+                        <a class="nav-link" href="../tarif/tambah.php">Tambah Data Tarif</a>
                     </nav>
                 </div>
                 <div class="sb-sidenav-menu-heading">Eksternal</div>
