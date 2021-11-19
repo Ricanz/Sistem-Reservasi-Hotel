@@ -47,7 +47,7 @@ include "../../config.php";
                                             <th>Kode Jenis Kamar</th>
                                             <th>Kapasitas</th>
                                             <th>Deskripsi Kamar</th>
-                                            <th>Aksi</th>
+                                            <th style="text-align: center;">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -57,7 +57,7 @@ include "../../config.php";
                                             <th>Kode Jenis Kamar</th>
                                             <th>Kapasitas</th>
                                             <th>Deskripsi Kamar</th>
-                                            <th>Aksi</th>
+                                            <th style="text-align: center;">Aksi</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -83,7 +83,7 @@ include "../../config.php";
                                             <td><?php echo $deskripsi_kamar; ?></td>
                                             <td style="text-align: center;">
                                             <a href="delete.php?id=<?php echo $jenis_kamar_id; ?>" class="btn btn-danger">Hapus</a>
-                                            <a href="edit.php?id=<?php echo $jenis_kamar_id; ?>" class="btn btn-warning">Sunting</a>
+                                            <a href="edit.php?id=<?php echo $jenis_kamar_id; ?>" class="btn btn-success">Sunting</a>
                                             </td>
                                         </tr>
                                     <?php $no++; }?>
