@@ -45,7 +45,7 @@ if (isset($_POST['submit'])) {
 
 
 <!-- Head -->
-<?php include 'layout/head.php' ?>
+<?php  include '../layout/head.php'   ?>
 
 <body class="sb-nav-fixed">
     <!-- Navbar -->
