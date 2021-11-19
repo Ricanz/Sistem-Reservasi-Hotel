@@ -38,7 +38,7 @@
                 <div class="collapse" id="data-pengguna" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link" href="../pengguna/index.php">Data Pengguna</a>
-                        <a class="nav-link" href="layout-sidenav-light.html">Tambah Data Pengguna</a>
+                        <a class="nav-link" href="../pengguna/tambah.php">Tambah Data Pengguna</a>
                     </nav>
                 </div>
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#jenis-kamar" aria-expanded="false" aria-controls="collapsePages">
