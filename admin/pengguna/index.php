@@ -5,7 +5,7 @@ include "../../config.php";
 <html lang="en">
 
 <!-- Head -->
-<?php include 'layout/head.php' ?>
+<?php include '../layout/head.php' ?>
 
 <body class="sb-nav-fixed">
     <!-- Navbar -->
@@ -69,7 +69,7 @@ include "../../config.php";
                                 <tbody>
                                     <?php
                                     $no = 1;
-                                    $query = "SELECT * FROM users  INNER JOIN roles ON users.role_id = roles.role_id";
+                                    $query = "SELECT * FROM users ";
                                     $sql = mysqli_query($conn, $query);
 
                                     while ($hasil = mysqli_fetch_array ($sql)) {
@@ -109,7 +109,7 @@ include "../../config.php";
         </div>
     </div>
     <!-- Scripts -->
-    <?php include 'layout/scripts.php' ?>
+    <?php include '../layout/scripts.php' ?>
 </body>
 
 </html>
