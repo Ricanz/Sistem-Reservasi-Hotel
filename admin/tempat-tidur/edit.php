@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
 
 
 <!-- Head -->
-<?php include 'layout/head.php' ?>
+<?php include '../layout/head.php' ?>
 
 <body class="sb-nav-fixed">
     <!-- Navbar -->
@@ -93,7 +93,7 @@ if (isset($_POST['submit'])) {
         </div>
     </div>
     <!-- Scripts -->
-    <?php include 'layout/scripts.php' ?>
+    <?php include '../layout/scripts.php' ?>
 
 </body>
 
