@@ -1,6 +1,7 @@
 <?php
 include "../../config.php";
 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -96,7 +97,7 @@ include "../../config.php";
                                             <td><?php echo $tgl_masuk; ?></td>
                                             <td><?php echo $tgl_keluar; ?></td>
                                             <td style="text-align: center;">
-                                            <a href="index.php?page=delete&kamar_id=<?php echo $kamar_id; ?>" class="btn btn-danger">Hapus</a>
+                                            <a href="delete.php?id=<?php echo $kamar_id; ?>" class="btn btn-danger">Hapus</a>
                                             <button type="button" class="btn btn-success">Sunting</button>
                                             </td>
                                         </tr>
