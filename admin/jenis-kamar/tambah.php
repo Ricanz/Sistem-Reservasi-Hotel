@@ -120,7 +120,7 @@ if (isset($_POST['submit'])) {
         </div>
     </div>
     <!-- Scripts -->
-    <?php include 'layout/scripts.php' ?>
+    <?php include '../layout/scripts.php' ?>
 
 </body>
 
