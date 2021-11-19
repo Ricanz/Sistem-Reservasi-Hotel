@@ -19,6 +19,20 @@ include "../../config.php";
                 <main>
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Data Jenis Kamar</h1>
+                    <?php
+                    error_reporting(0);
+                        if($_GET['pesan'] != NULL){
+                            echo "
+                            <div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                                <strong> Berhasil </strong>
+                                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                            </div>";
+                        }
+                        else{
+
+                        }
+                            
+                    ?>
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
@@ -33,6 +47,7 @@ include "../../config.php";
                                             <th>Kode Jenis Kamar</th>
                                             <th>Kapasitas</th>
                                             <th>Deskripsi Kamar</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -42,6 +57,7 @@ include "../../config.php";
                                             <th>Kode Jenis Kamar</th>
                                             <th>Kapasitas</th>
                                             <th>Deskripsi Kamar</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -51,6 +67,7 @@ include "../../config.php";
                                     $sql = mysqli_query ($conn, $query);
                                     
                                     while ($hasil = mysqli_fetch_array ($sql)) {
+                                        $jenis_kamar_id = $hasil['jenis_kamar_id'];
                                         $jenis_kamar = $hasil['jenis_kamar'];
                                         $kode_jenis_kamar = $hasil['kode_jenis_kamar'];
                                         $kapasitas = $hasil['kapasitas'];
@@ -64,7 +81,10 @@ include "../../config.php";
                                             <td><?php echo $kode_jenis_kamar; ?></td>
                                             <td><?php echo $kapasitas; ?></td>
                                             <td><?php echo $deskripsi_kamar; ?></td>
-                                            <td>$320,800</td>
+                                            <td style="text-align: center;">
+                                            <a href="delete.php?id=<?php echo $jenis_kamar_id; ?>" class="btn btn-danger">Hapus</a>
+                                            <a href="edit.php?id=<?php echo $jenis_kamar_id; ?>" class="btn btn-warning">Sunting</a>
+                                            </td>
                                         </tr>
                                     <?php $no++; }?>
                                     </tbody>
