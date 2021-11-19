@@ -64,13 +64,17 @@
                     </nav>
                 </div>
                 <div class="sb-sidenav-menu-heading">Eksternal</div>
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="../pelanggan/index.php">
                     <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                     Data Tamu
                 </a>
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="../pelanggan/tambah.php">
                     <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                     Tambah Data Tamu
+                </a>
+                <a class="nav-link" href="tables.html">
+                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                    Data Reservasi
                 </a>
                 <div class="sb-sidenav-menu-heading">Laporan</div>
                 <a class="nav-link" href="charts.html">

@@ -28,7 +28,7 @@ if ($_SESSION['username'] == null) {
             <main>
                 <div class="container-fluid px-4">
                     <h1 class="mt-4"> <?php echo "Selamat Datang," . $_SESSION['username'] . "!" ?> </h1>
-                    <h1 class="mt-4">Data Kamar </h1>
+                    <h1 class="mt-4">Data Tamu </h1>
                     <?php
                     error_reporting(0);
                     if ($_GET['pesan'] != NULL) {
@@ -51,11 +51,15 @@ if ($_SESSION['username'] == null) {
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Jenis Kamar</th>
-                                        <th>Tempat Tidur</th>
-                                        <th>No Kamar</th>
-                                        <th>Lantai</th>
-                                        <th>Bebas Rokok</th>
+                                        <th>Nama</th>
+                                        <th>No Identitas</th>
+                                        <th>No Hp</th>
+                                        <th>Alamat</th>
+                                        <th>Email</th>
+                                        <th>Total Tamu</th>
+                                        <th>Kamar</th>
+                                        <th>Tanggal Masuk</th>
+                                        <th>Tanggal Keluar</th>
                                         <th>Status Kamar</th>
                                         <th style="text-align: center;">Aksi</th>
                                     </tr>
@@ -63,11 +67,15 @@ if ($_SESSION['username'] == null) {
                                 <tfoot>
                                     <tr>
                                         <th>No</th>
-                                        <th>Jenis Kamar</th>
-                                        <th>Tempat Tidur</th>
-                                        <th>No Kamar</th>
-                                        <th>Lantai</th>
-                                        <th>Bebas Rokok</th>
+                                        <th>Nama</th>
+                                        <th>No Identitas</th>
+                                        <th>No Hp</th>
+                                        <th>Alamat</th>
+                                        <th>Email</th>
+                                        <th>Total Tamu</th>
+                                        <th>Kamar</th>
+                                        <th>Tanggal Masuk</th>
+                                        <th>Tanggal Keluar</th>
                                         <th>Status Kamar</th>
                                         <th style="text-align: center;">Aksi</th>
                                     </tr>
@@ -75,26 +83,33 @@ if ($_SESSION['username'] == null) {
                                 <tbody>
                                     <?php
                                     $no = 1;
-                                    $query = "SELECT * FROM kamar  INNER JOIN jenis_kamar ON kamar.jenis_kamar_id = jenis_kamar.jenis_kamar_id INNER JOIN tempat_tidur ON kamar.tempat_tidur_id = tempat_tidur.tempat_tidur_id";
+                                    $query = "SELECT * FROM pelanggan  INNER JOIN kamar ON pelanggan.kamar_id = kamar.kamar_id";
                                     $sql = mysqli_query($conn, $query);
 
                                     while ($hasil = mysqli_fetch_array($sql)) {
-                                        $kamar_id = $hasil['kamar_id'];
-                                        $jenis_kamar = $hasil['jenis_kamar'];
-                                        $jenis_tempat_tidur = $hasil['jenis_tempat_tidur'];
-                                        $no_kamar = $hasil['no_kamar'];
-                                        $lantai = $hasil['lantai'];
-                                        $bebas_rokok = $hasil['jenis_tempat_tidur'];
-                                        $status_kamar = $hasil['status_kamar'];
+                                        $nama_pelanggan = $hasil['nama_pelanggan'];
+                                        $no_identitas = $hasil['no_identitas'];
+                                        $no_hp = $hasil['no_hp'];
+                                        $alamat = $hasil['alamat'];
+                                        $email = $hasil['email'];
+                                        $orang = $hasil['orang'];
+                                        $jenis_kamar = $hasil['no_kamar'];
+                                        $status = $hasil['status'];
+                                        $tgl_masuk = $hasil['tgl_masuk'];
+                                        $tgl_keluar = $hasil['tgl_keluar'];
                                     ?>
                                         <tr>
                                             <td><?php echo $no; ?></td>
+                                            <td><?php echo $nama_pelanggan; ?></td>
+                                            <td><?php echo $no_identitas; ?></td>
+                                            <td><?php echo $no_hp; ?></td>
+                                            <td><?php echo $alamat; ?></td>
+                                            <td><?php echo $email; ?></td>
+                                            <td><?php echo $orang; ?></td>
                                             <td><?php echo $jenis_kamar; ?></td>
-                                            <td><?php echo $jenis_tempat_tidur; ?></td>
-                                            <td><?php echo $no_kamar; ?></td>
-                                            <td><?php echo $lantai; ?></td>
-                                            <td><?php echo $bebas_rokok; ?></td>
-                                            <td><?php echo $status_kamar; ?></td>
+                                            <td><?php echo $status; ?></td>
+                                            <td><?php echo $tgl_masuk; ?></td>
+                                            <td><?php echo $tgl_keluar; ?></td>
                                             <td style="text-align: center;">
                                                 <a href="delete.php?id=<?php echo $kamar_id; ?>" class="btn btn-danger">Hapus</a>
                                                 <a href="edit.php?id=<?php echo $kamar_id; ?>" class="btn btn-success">Sunting</a>

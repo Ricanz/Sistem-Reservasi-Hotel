@@ -42,9 +42,10 @@ include "../../config.php";
                                     <tr>
                                         <th>No</th>
                                         <th>Jenis Kamar</th>
-                                        <th>Kode Jenis Kamar</th>
+                                        <th>Kode</th>
                                         <th>Kapasitas</th>
                                         <th>Deskripsi Kamar</th>
+                                        <th>Total Kamar</th>
                                         <th style="text-align: center;">Aksi</th>
                                     </tr>
                                 </thead>
@@ -52,9 +53,10 @@ include "../../config.php";
                                     <tr>
                                         <th>No</th>
                                         <th>Jenis Kamar</th>
-                                        <th>Kode Jenis Kamar</th>
+                                        <th>Kode</th>
                                         <th>Kapasitas</th>
                                         <th>Deskripsi Kamar</th>
+                                        <th>Total Kamar</th>
                                         <th style="text-align: center;">Aksi</th>
                                     </tr>
                                 </tfoot>
@@ -70,6 +72,7 @@ include "../../config.php";
                                         $kode_jenis_kamar = $hasil['kode_jenis_kamar'];
                                         $kapasitas = $hasil['kapasitas'];
                                         $deskripsi_kamar = $hasil['deskripsi_kamar'];
+                                        $total = $hasil['total'];
 
 
                                     ?>
@@ -79,6 +82,7 @@ include "../../config.php";
                                             <td><?php echo $kode_jenis_kamar; ?></td>
                                             <td><?php echo $kapasitas; ?></td>
                                             <td><?php echo $deskripsi_kamar; ?></td>
+                                            <td><?php echo $total; ?></td>
                                             <td style="text-align: center;">
                                                 <a href="delete.php?id=<?php echo $jenis_kamar_id; ?>" class="btn btn-danger">Hapus</a>
                                                 <a href="edit.php?id=<?php echo $jenis_kamar_id; ?>" class="btn btn-success">Sunting</a>

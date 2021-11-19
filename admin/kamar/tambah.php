@@ -7,11 +7,14 @@ if (isset($_POST['submit'])) {
     $lantai = $_POST['lantai'];
     $bebas_rokok = $_POST['bebas_rokok'];
     $status_kamar = $_POST['status_kamar'];
-    $tgl_masuk = $_POST['tgl_masuk'];
-    $tgl_keluar = $_POST['tgl_keluar'];
 
     //insert ke tabel
-    $query = "INSERT INTO kamar	values('','$jenis_kamar_id', '$tempat_tidur_id', '$no_kamar', '$lantai', '$bebas_rokok','$status_kamar', '$tgl_masuk', '$tgl_keluar')";
+    $query = "INSERT INTO kamar	values('','$jenis_kamar_id', '$tempat_tidur_id', '$no_kamar', '$lantai', '$bebas_rokok','$status_kamar')";
+
+    //update total jenis kamar
+    $query = "UPDATE jenis_kamar
+    SET total = total + 1
+    WHERE jenis_kamar_id = $jenis_kamar_id";
 
     // $sql = mysqli_query($conn, "INSERT INTO kamar (jenis_kamar_id, tempat_tidur_id, no_kamar, lantai, bebas_rokok, status_kamar, status_kamar, tgl_masuk, tgl_keluar) 
     // VALUES('$jenis_kamar_id', '$tempat_tidur_id', '$no_kamar', '$lantai', '$bebas_rokok','$status_kamar', '$tgl_masuk', '$tgl_keluar')");
@@ -120,20 +123,6 @@ if (isset($_POST['submit'])) {
                                                 <input class="form-check-input" type="radio" name="bebas_rokok" id="bebas_rokok" value="1">
                                                 <label class="form-check-label" for="bebas_rokok">Tidak</label>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <div class="form-floating mb-3 mb-md-0">
-                                            <input class="form-control" id="tgl_masuk" type="date" placeholder="" name="tgl_masuk">
-                                            <label for="tgl_masuk">Tanggal Masuk</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input class="form-control" id="tgl_keluar" type="date" placeholder="" name="tgl_keluar">
-                                            <label for="tgl_keluar">Tanggal Keluar</label>
                                         </div>
                                     </div>
                                 </div>
