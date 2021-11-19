@@ -5,7 +5,7 @@ include "../../config.php";
 <html lang="en">
     
     <!-- Head -->
-    <?php include 'layout/head.php' ?>
+    <?php include '../layout/head.php' ?>
 
     <body class="sb-nav-fixed">
         <!-- Navbar -->
@@ -90,6 +90,6 @@ include "../../config.php";
             </div>
         </div>
         <!-- Scripts -->
-        <?php include 'layout/scripts.php' ?>
+        <?php include '../layout/scripts.php' ?>
     </body>
 </html>
