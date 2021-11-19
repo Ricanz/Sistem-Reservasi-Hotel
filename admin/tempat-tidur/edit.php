@@ -1,24 +1,21 @@
 <?php include "../../config.php";
 
 if (isset($_POST['submit'])) {
+    $id = $_GET['id'];
     $jenis_tempat_tidur = $_POST['jenis_tempat_tidur'];
     $jumlah_bed_tersedia = $_POST['jumlah_bed_tersedia'];
 
     //insert ke tabel
-    $query = "INSERT INTO tempat_tidur	values('','$jenis_tempat_tidur', '$jumlah_bed_tersedia')";
-
-    // $sql = mysqli_query($conn, "INSERT INTO kamar (jenis_kamar_id, tempat_tidur_id, no_kamar, lantai, bebas_rokok, status_kamar, status_kamar, tgl_masuk, tgl_keluar) 
-    // VALUES('$jenis_kamar_id', '$tempat_tidur_id', '$no_kamar', '$lantai', '$bebas_rokok','$status_kamar', '$tgl_masuk', '$tgl_keluar')");
+    $query ="UPDATE tempat_tidur SET jenis_tempat_tidur='$jenis_tempat_tidur',jumlah_bed_tersedia='$jumlah_bed_tersedia' WHERE tempat_tidur_id=$id";
 
 
-    $sql = mysqli_query ($conn, $query) or die (mysqli_error());
-	if ($sql) {
-        $pesan = "Data kamar berhasil ditambah!";
-        header('Location: index.php?pesan=". $pesan ."');	
-	} else {
-		echo "<h2><font color=red>Data gagal ditambahkan</font></h2>";	
-	}
-
+    $sql = mysqli_query($conn, $query) or die(mysqli_error());
+    if ($sql) {
+        $pesan = "Data jenis kamar berhasil ditambah!";
+        header('Location: index.php?pesan=". $pesan ."');
+    } else {
+        echo "<h2><font color=red>Data gagal ditambahkan</font></h2>";
+    }
     
 
     // var_dump($query, $sql);
@@ -49,6 +46,19 @@ if (isset($_POST['submit'])) {
                             <i class="fas fa-table me-1"></i>
                             DataTable Example
                         </div>
+                        <?php
+                            // Display selected user data based on id
+                            // Getting id from url
+                            $id = $_GET['id'];
+
+                            // Fetech user data based on id
+                            $result = mysqli_query($conn, "SELECT * FROM tempat_tidur WHERE tempat_tidur_id=$id");
+
+                            while ($data = mysqli_fetch_array($result)) {
+                                $jenis_tempat_tidur = $data['jenis_tempat_tidur'];
+                                $jumlah_bed_tersedia = $data['jumlah_bed_tersedia'];
+                            }
+                            ?>
                         <div class="card-body">
                             <form method="post" action="" name="submit">
                                 <input type="hidden" name="status_kamar" value="available">
@@ -56,14 +66,14 @@ if (isset($_POST['submit'])) {
                                     <div class="col-md-6">
                                         <div class="form-floating mb-3 mb-md-0">
                                         <div class="form-floating mb-3 mb-md-0">
-                                            <input class="form-control" id="jenis_tempat_tidur" type="text" placeholder="Masukkan Nomor Kamar" name="jenis_tempat_tidur">
+                                            <input class="form-control" id="jenis_tempat_tidur" type="text" placeholder="Masukkan Nomor Kamar" name="jenis_tempat_tidur" value="<?php echo $jenis_tempat_tidur?>">
                                             <label for="jenis_tempat_tidur">Jenis Tempat Tidur</label>
                                         </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating mb-3 mb-md-0">
-                                            <input class="form-control" id="jumlah_bed_tersedia" type="text" placeholder="Masukkan Nomor Kamar" name="jumlah_bed_tersedia">
+                                            <input class="form-control" id="jumlah_bed_tersedia" type="text" placeholder="Masukkan Nomor Kamar" name="jumlah_bed_tersedia" value="<?php echo $jumlah_bed_tersedia?>">
                                             <label for="jumlah_bed_tersedia">Jumlah Tempat Tidur Tersedia</label>
                                         </div>
                                     </div>

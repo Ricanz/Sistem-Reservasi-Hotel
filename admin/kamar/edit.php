@@ -1,7 +1,7 @@
 <?php include "../../config.php";
 
 if (isset($_POST['submit'])) {
-    $id = $_POST['kamar_id'];
+    $id = $_GET['id'];
     $jenis_kamar_id = $_POST['jenis_kamar_id'];
     $tempat_tidur_id = $_POST['tempat_tidur_id'];
     $no_kamar = $_POST['no_kamar'];
@@ -12,17 +12,16 @@ if (isset($_POST['submit'])) {
     $tgl_keluar = $_POST['tgl_keluar'];
 
     //insert ke tabel
-    $query = mysqli_query($conn, "UPDATE kamar SET jenis_kamar_id='$jenis_kamar_id',tempat_tidur_id='$tempat_tidur_id',no_kamar='$no_kamar',
-    lantai='$lantai',bebas_rokok='$bebas_rokok',status_kamar='$status_kamar',tgl_masuk='$tgl_masuk',tgl_keluar='$tgl_keluar' WHERE kamar_id=$id");
+    $query = "UPDATE kamar SET jenis_kamar_id='$jenis_kamar_id',tempat_tidur_id='$tempat_tidur_id',no_kamar='$no_kamar',
+    lantai='$lantai',bebas_rokok='$bebas_rokok',status_kamar='$status_kamar',tgl_masuk='$tgl_masuk',tgl_keluar='$tgl_keluar' WHERE kamar_id=$id";
 
     // $sql = mysqli_query($conn, "INSERT INTO kamar (jenis_kamar_id, tempat_tidur_id, no_kamar, lantai, bebas_rokok, status_kamar, status_kamar, tgl_masuk, tgl_keluar) 
     // VALUES('$jenis_kamar_id', '$tempat_tidur_id', '$no_kamar', '$lantai', '$bebas_rokok','$status_kamar', '$tgl_masuk', '$tgl_keluar')");
 
 
-    $sql = mysqli_query($conn, $query);
-    var_dump($query, $sql);
+    $sql = mysqli_query($conn, $query) or die(mysqli_error());
     if ($sql) {
-        $pesan = "Data kamar berhasil ditambah!";
+        $pesan = "Data jenis kamar berhasil ditambah!";
         header('Location: index.php?pesan=". $pesan ."');
     } else {
         echo "<h2><font color=red>Data gagal ditambahkan</font></h2>";
@@ -81,7 +80,6 @@ if (isset($_POST['submit'])) {
                             ?>
                             <form method="post" action="" name="submit">
                                 <input type="hidden" name="status_kamar" value="available">
-                                <input type="hidden" name="kamar_id" value="54">
                                 <div class="row mb-3">
                                     <div class="col-md-6">
                                         <div class="form-floating mb-3 mb-md-0">

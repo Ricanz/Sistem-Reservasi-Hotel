@@ -2,12 +2,12 @@
 include "../../config.php";
 
 session_start();
- 
+
 if ($_SESSION['username'] == null) {
-   header("Location: ../../login.php");
-   exit();
+    header("Location: ../../login.php");
+    exit();
 }
- 
+
 ?>
 
 <!DOCTYPE html>
@@ -27,26 +27,24 @@ if ($_SESSION['username'] == null) {
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                <h1 class="mt-4"> <?php echo "Selamat Datang,".$_SESSION['username']."!" ?>   </h1>
-                    <h1 class="mt-4">Data Kamar </h1>   
+                    <h1 class="mt-4"> <?php echo "Selamat Datang," . $_SESSION['username'] . "!" ?> </h1>
+                    <h1 class="mt-4">Data Kamar </h1>
                     <?php
                     error_reporting(0);
-                        if($_GET['pesan'] != NULL){
-                            echo "
+                    if ($_GET['pesan'] != NULL) {
+                        echo "
                             <div class='alert alert-warning alert-dismissible fade show' role='alert'>
                                 <strong> Berhasil </strong>
                                 <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                             </div>";
-                        }
-                        else{
+                    } else {
+                    }
 
-                        }
-                            
                     ?>
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table me-1"></i>
-                            DataTable Example 
+                            DataTable Example
                         </div>
                         <div class="card-body">
                             <table id="datatablesSimple">
@@ -83,7 +81,7 @@ if ($_SESSION['username'] == null) {
                                     $query = "SELECT * FROM kamar  INNER JOIN jenis_kamar ON kamar.jenis_kamar_id = jenis_kamar.jenis_kamar_id INNER JOIN tempat_tidur ON kamar.tempat_tidur_id = tempat_tidur.tempat_tidur_id";
                                     $sql = mysqli_query($conn, $query);
 
-                                    while ($hasil = mysqli_fetch_array ($sql)) {
+                                    while ($hasil = mysqli_fetch_array($sql)) {
                                         $kamar_id = $hasil['kamar_id'];
                                         $jenis_kamar = $hasil['jenis_kamar'];
                                         $jenis_tempat_tidur = $hasil['jenis_tempat_tidur'];
@@ -105,11 +103,12 @@ if ($_SESSION['username'] == null) {
                                             <td><?php echo $tgl_masuk; ?></td>
                                             <td><?php echo $tgl_keluar; ?></td>
                                             <td style="text-align: center;">
-                                            <a href="delete.php?id=<?php echo $kamar_id; ?>" class="btn btn-danger">Hapus</a>
-                                            <a href="edit.php?id=<?php echo $kamar_id; ?>" class="btn btn-success">Sunting</a>
+                                                <a href="delete.php?id=<?php echo $kamar_id; ?>" class="btn btn-danger">Hapus</a>
+                                                <a href="edit.php?id=<?php echo $kamar_id; ?>" class="btn btn-success">Sunting</a>
                                             </td>
                                         </tr>
-                                    <?php $no++; }?>
+                                    <?php $no++;
+                                    } ?>
 
                                 </tbody>
                             </table>
