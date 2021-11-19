@@ -76,6 +76,10 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                     Data Reservasi
                 </a>
+                <a class="nav-link" href="tables.html">
+                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                    Pembayaran
+                </a>
                 <div class="sb-sidenav-menu-heading">Laporan</div>
                 <a class="nav-link" href="charts.html">
                     <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>

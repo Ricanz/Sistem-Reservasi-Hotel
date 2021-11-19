@@ -44,7 +44,9 @@ include "../../config.php";
                                         <th>Jenis Kamar</th>
                                         <th>Kode</th>
                                         <th>Kapasitas</th>
+                                        <th>Tempat Tidur</th>
                                         <th>Deskripsi Kamar</th>
+                                        <th>Harga</th>
                                         <th>Total Kamar</th>
                                         <th style="text-align: center;">Aksi</th>
                                     </tr>
@@ -55,7 +57,9 @@ include "../../config.php";
                                         <th>Jenis Kamar</th>
                                         <th>Kode</th>
                                         <th>Kapasitas</th>
+                                        <th>Tempat Tidur</th>
                                         <th>Deskripsi Kamar</th>
+                                        <th>Harga</th>
                                         <th>Total Kamar</th>
                                         <th style="text-align: center;">Aksi</th>
                                     </tr>
@@ -63,7 +67,7 @@ include "../../config.php";
                                 <tbody>
                                     <?php
                                     $no = 1;
-                                    $query = "SELECT * FROM jenis_kamar ORDER BY jenis_kamar_id";
+                                    $query = "SELECT * FROM jenis_kamar INNER JOIN tempat_tidur ON jenis_kamar.tempat_tidur_id = tempat_tidur.tempat_tidur_id ";
                                     $sql = mysqli_query($conn, $query);
 
                                     while ($hasil = mysqli_fetch_array($sql)) {
@@ -71,8 +75,10 @@ include "../../config.php";
                                         $jenis_kamar = $hasil['jenis_kamar'];
                                         $kode_jenis_kamar = $hasil['kode_jenis_kamar'];
                                         $kapasitas = $hasil['kapasitas'];
+                                        $tempat_tidur_id = $hasil['jenis_tempat_tidur'];
                                         $deskripsi_kamar = $hasil['deskripsi_kamar'];
                                         $total = $hasil['total'];
+                                        $harga = $hasil['harga'];
 
 
                                     ?>
@@ -81,7 +87,9 @@ include "../../config.php";
                                             <td><?php echo $jenis_kamar; ?></td>
                                             <td><?php echo $kode_jenis_kamar; ?></td>
                                             <td><?php echo $kapasitas; ?></td>
+                                            <td><?php echo $tempat_tidur_id; ?></td>
                                             <td><?php echo $deskripsi_kamar; ?></td>
+                                            <td><?php echo $harga; ?></td>
                                             <td><?php echo $total; ?></td>
                                             <td style="text-align: center;">
                                                 <a href="delete.php?id=<?php echo $jenis_kamar_id; ?>" class="btn btn-danger">Hapus</a>

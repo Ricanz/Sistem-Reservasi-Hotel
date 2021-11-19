@@ -7,6 +7,9 @@ if (isset($_POST['submit'])) {
     $kode_jenis_kamar = $_POST['kode_jenis_kamar'];
     $kapasitas = $_POST['kapasitas'];
     $deskripsi_kamar = $_POST['deskripsi_kamar'];
+    $total = $_POST['total'];
+    $tempat_tidur_id = $_POST['tempat_tidur_id'];
+    $harga = $_POST['harga'];
 
     //foto
     // $namafoto = $_FILES['file']['name'];
@@ -80,6 +83,9 @@ if (isset($_POST['submit'])) {
                                 $kode_jenis_kamar = $data['kode_jenis_kamar'];
                                 $kapasitas = $data['kapasitas'];
                                 $deskripsi_kamar = $data['deskripsi_kamar'];
+                                $total = $data['total'];
+                                $tempat_tidur_id = $data['tempat_tidur_id'];
+                                $harga = $data['harga'];
                             }
                             ?>
                             <form method="post" action="" name="submit">
@@ -120,6 +126,37 @@ if (isset($_POST['submit'])) {
                                             <?php echo $deskripsi_kamar ?>
                                             </textarea>
                                             <label for="deskripsi_kamar">Deskripsi Kamar</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <div class="form-floating mb-3 mb-md-0">
+                                            <input class="form-control" id="kode_jenis_kamar" type="text" placeholder="Masukkan Kode Jenis Kamar" name="total" value="<?php echo $total ?>">
+                                            <label for="kode_jenis_kamar">Total</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <select class="form-select" aria-label="Default select example" name="tempat_tidur_id">
+                                            <option selected>-- Pilih Tempat Tidur --</option>
+                                            <?php
+                                            $query = "SELECT tempat_tidur_id, jenis_tempat_tidur FROM tempat_tidur ORDER BY tempat_tidur_id";
+                                            $sql = mysqli_query($conn, $query);
+
+                                            while ($hasil = mysqli_fetch_array($sql)) {
+                                                $jenis_tempat_tidur = $hasil['jenis_tempat_tidur'];
+                                                $tempat_tidur_id = $hasil['tempat_tidur_id'];
+                                            ?>
+                                                <option value="<?php echo $tempat_tidur_id ?>"><?php echo $jenis_tempat_tidur ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-12">
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="harga" type="text" placeholder="Masukkan Kode Jenis Kamar" name="harga" value="<?php echo $harga ?>">
+                                            <label for="harga">Harga</label>
                                         </div>
                                     </div>
                                 </div>
