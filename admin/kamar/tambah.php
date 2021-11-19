@@ -1,27 +1,4 @@
-<?php
-include "../../config.php";
-
-//proses input berita
-if (isset($_POST['Input'])) {
-	$jenis_kamar_id = $_POST['jenis_kamar_id'];
-	$tempat_tidur_id = $_POST['tempat_tidur_id'];
-	$no_kamar = $_POST['no_kamar'];
-	$lantai = $_POST['lantai'];
-	$bebas_rokok = $_POST['bebas_rokok'];
-	$tgl_masuk = $_POST['tgl_masuk'];
-	$tgl_keluar = $_POST['tgl_keluar'];
-
-	//insert ke tabel
-	$query = "INSERT INTO kamar (jenis_kamar_id, tempat_tidur_id, no_kamar, lantai, bebas_rokok, tgl_masuk, tgl_keluar) 
-	VALUES('$jenis_kamar_id', '$tempat_tidur_id', '$no_kamar', '$lantai', '$bebas_rokok', '$tgl_masuk', '$tgl_keluar')";
-	$sql = mysqli_query ($conn, $query);
-	if ($sql) {
-		echo "<h2><font color=blue>Data berhasil ditambahkan</font></h2>";	
-	} else {
-		echo "<h2><font color=red>Data gagal ditambahkan</font></h2>";	
-	}
-}
-?>
+<?php require "store.php";?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,7 +24,8 @@ if (isset($_POST['Input'])) {
                             DataTable Example
                         </div>
                         <div class="card-body">
-                            <form method="POST" action="" name= "Input" enctype="multipart/form-data">
+                            <form method="post" action="store.php" >
+                                <input type="hidden" name="status_kamar" value="available">
                                 <div class="row mb-3">
                                     <div class="col-md-6">
                                         <div class="form-floating mb-3 mb-md-0">
@@ -61,7 +39,7 @@ if (isset($_POST['Input'])) {
                                                             $jenis_kamar = $hasil['jenis_kamar'];
                                                             $jenis_kamar_id = $hasil['jenis_kamar_id'];
                                                     ?>
-                                                <option value="<? echo $jenis_kamar_id ?>"><?php echo $jenis_kamar ?></option>
+                                                <option value="<?php echo $jenis_kamar_id ?>"><?php echo $jenis_kamar ?></option>
                                                 <?php }?>
                                             </select>
                                             <label for="jenis_kamar_id">Jenis Kamar</label>
@@ -79,7 +57,7 @@ if (isset($_POST['Input'])) {
                                                             $jenis_tempat_tidur = $hasil['jenis_tempat_tidur'];
                                                             $tempat_tidur_id = $hasil['tempat_tidur_id'];
                                                     ?>
-                                                <option value="<? echo $tempat_tidur_id ?>"><?php echo $jenis_tempat_tidur ?></option>
+                                                <option value="<?php echo $tempat_tidur_id ?>"><?php echo $jenis_tempat_tidur ?></option>
                                                 <?php }?>
                                             </select>
                                             <label for="tempat_tidur_id">Tempat Tidur</label>
@@ -129,7 +107,7 @@ if (isset($_POST['Input'])) {
                                 </div>
                                 <div class="mt-4 mb-0">
                                     <div class="d-grid">
-                                        <button type="submit" name="Input" class="btn btn-primary btn-block">Tambah Kamar</button>
+                                        <button type="submit" name="submit" class="btn btn-primary btn-block">Tambah Kamar</button>
                                     </div>
                                 </div>
                             </form>
