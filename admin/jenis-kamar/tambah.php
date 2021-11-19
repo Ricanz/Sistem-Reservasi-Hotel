@@ -5,37 +5,40 @@ if (isset($_POST['submit'])) {
     $kode_jenis_kamar = $_POST['kode_jenis_kamar'];
     $kapasitas = $_POST['kapasitas'];
     $deskripsi_kamar = $_POST['deskripsi_kamar'];
-    
-    //foto
-	$namafoto = $_FILES['file']['name'];
-	$tipe = $_FILES['file']['type'];
-    $ukuran = $_FILES['file']['size'];
-    $lokasi = $_FILES['file']['tmp_name'];
-    $tmp = "img/".$namafoto;
+    $total = $_POST['total'];
+    // ambil data file
+    $nama_foto = $_FILES['foto']['name'];
+    $namaSementara = $_FILES['foto']['tmp_name'];
 
-    if (strlen($namafoto)>0) {
-		//upload
-		if (is_uploaded_file($lokasi)) {
-			move_uploaded_file ($lokasi, $tmp);
-		}
-	}
+    // tentukan lokasi file akan dipindahkan
+    $dirUpload = "../../img/";
+
+    // pindahkan file
+    $terupload = move_uploaded_file($namaSementara, $dirUpload . $nama_foto);
+
+    if ($terupload) {
+        echo "Upload berhasil!<br/>";
+        echo "Link: <a href='" . $dirUpload . $nama_foto . "'>" . $nama_foto . "</a>";
+    } else {
+        echo "Upload Gagal!";
+    }
 
     //insert ke tabel
-    $query = "INSERT INTO jenis_kamar	values('','$jenis_kamar', '$kode_jenis_kamar', '$kapasitas', '$deskripsi_kamar', '$nama_foto')";
+    $query = "INSERT INTO jenis_kamar	values('','$jenis_kamar', '$kode_jenis_kamar', '$kapasitas', '$deskripsi_kamar', '$nama_foto', $total)";
 
     // $sql = mysqli_query($conn, "INSERT INTO kamar (jenis_kamar_id, tempat_tidur_id, no_kamar, lantai, bebas_rokok, status_kamar, status_kamar, tgl_masuk, tgl_keluar) 
     // VALUES('$jenis_kamar_id', '$tempat_tidur_id', '$no_kamar', '$lantai', '$bebas_rokok','$status_kamar', '$tgl_masuk', '$tgl_keluar')");
 
 
-    $sql = mysqli_query ($conn, $query) or die (mysqli_error());
-	if ($sql) {
+    $sql = mysqli_query($conn, $query) or die(mysqli_error());
+    if ($sql) {
         $pesan = "Data jenis kamar berhasil ditambah!";
-        header('Location: index.php?pesan=". $pesan ."');	
-	} else {
-		echo "<h2><font color=red>Data gagal ditambahkan</font></h2>";	
-	}
+        header('Location: index.php?pesan=". $pesan ."');
+    } else {
+        echo "<h2><font color=red>Data gagal ditambahkan</font></h2>";
+    }
 
-    
+
 
     // var_dump($query, $sql);
 }
@@ -45,7 +48,7 @@ if (isset($_POST['submit'])) {
 
 
 <!-- Head -->
-<?php  include '../layout/head.php'   ?>
+<?php include '../layout/head.php'   ?>
 
 <body class="sb-nav-fixed">
     <!-- Navbar -->
@@ -58,7 +61,7 @@ if (isset($_POST['submit'])) {
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    
+
                     <h1 class="mt-4">Data Jenis Kamar</h1>
                     <div class="card mb-4">
                         <div class="card-header">
@@ -66,20 +69,20 @@ if (isset($_POST['submit'])) {
                             DataTable Example
                         </div>
                         <div class="card-body">
-                            <form method="post" action="" name="submit">
+                            <form method="post" action="" name="submit" enctype="multipart/form-data">
                                 <input type="hidden" name="status_kamar" value="available">
                                 <div class="row mb-3">
                                     <div class="col-md-6">
                                         <div class="form-floating mb-3 mb-md-0">
                                             <input class="form-control" id="jenis_kamar" type="text" placeholder="Masukkan Jenis Kamar" name="jenis_kamar">
-                                                <label for="jenis_kamar">Jenis Kamar</label>
-                                            </div>
+                                            <label for="jenis_kamar">Jenis Kamar</label>
+                                        </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating mb-3 mb-md-0">
                                             <input class="form-control" id="kode_jenis_kamar" type="text" placeholder="Masukkan Kode Jenis Kamar" name="kode_jenis_kamar">
                                             <label for="kode_jenis_kamar">Kode Jenis Kamar</label>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -105,6 +108,13 @@ if (isset($_POST['submit'])) {
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                        <div class="form-floating mb-3 mb-md-0">
+                                            <input class="form-control" id="kode_jenis_kamar" type="text" placeholder="Masukkan Kode Jenis Kamar" name="total">
+                                            <label for="kode_jenis_kamar">Total</label>
+
+                                        </div>
+                                    </div>
                                 <div class="mt-4 mb-0">
                                     <div class="d-grid">
                                         <button type="submit" name="submit" class="btn btn-primary btn-block">Tambah Jenis Kamar</button>
