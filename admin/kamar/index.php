@@ -20,12 +20,17 @@ include "../../config.php";
                 <div class="container-fluid px-4">
                     <h1 class="mt-4">Data Kamar</h1>
                     <?php
-                        ($_GET['pesan']);
-                        echo "
-                        <div class='alert alert-warning alert-dismissible fade show' role='alert'>
-                            <strong>Riyanti</strong>
-                            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                        </div>";
+                    error_reporting(0);
+                        if($_GET['pesan'] != NULL){
+                            echo "
+                            <div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                                <strong>Riyanti</strong>
+                                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                            </div>";
+                        }
+                        else{
+
+                        }
                             
                     ?>
                     <div class="card mb-4">
