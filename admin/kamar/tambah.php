@@ -1,4 +1,35 @@
-<?php require "store.php";?>
+<?php include "../../config.php";
+
+if (isset($_POST['submit'])) {
+    $jenis_kamar_id = $_POST['jenis_kamar_id'];
+    $tempat_tidur_id = $_POST['tempat_tidur_id'];
+    $no_kamar = $_POST['no_kamar'];
+    $lantai = $_POST['lantai'];
+    $bebas_rokok = $_POST['bebas_rokok'];
+    $status_kamar = $_POST['status_kamar'];
+    $tgl_masuk = $_POST['tgl_masuk'];
+    $tgl_keluar = $_POST['tgl_keluar'];
+
+    //insert ke tabel
+    $query = "INSERT INTO kamar	values('','$jenis_kamar_id', '$tempat_tidur_id', '$no_kamar', '$lantai', '$bebas_rokok','$status_kamar', '$tgl_masuk', '$tgl_keluar')";
+
+    // $sql = mysqli_query($conn, "INSERT INTO kamar (jenis_kamar_id, tempat_tidur_id, no_kamar, lantai, bebas_rokok, status_kamar, status_kamar, tgl_masuk, tgl_keluar) 
+    // VALUES('$jenis_kamar_id', '$tempat_tidur_id', '$no_kamar', '$lantai', '$bebas_rokok','$status_kamar', '$tgl_masuk', '$tgl_keluar')");
+
+
+    $sql = mysqli_query ($conn, $query) or die (mysqli_error());
+	if ($sql) {
+        $pesan = "Data kamar berhasil ditambah!";
+        header('Location: index.php?pesan=". $pesan ."');	
+	} else {
+		echo "<h2><font color=red>Data gagal ditambahkan</font></h2>";	
+	}
+
+    
+
+    // var_dump($query, $sql);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,6 +48,7 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
+                    
                     <h1 class="mt-4">Data Kamar</h1>
                     <div class="card mb-4">
                         <div class="card-header">
@@ -24,23 +56,23 @@
                             DataTable Example
                         </div>
                         <div class="card-body">
-                            <form method="post" action="store.php" >
+                            <form method="post" action="" name="submit">
                                 <input type="hidden" name="status_kamar" value="available">
                                 <div class="row mb-3">
                                     <div class="col-md-6">
                                         <div class="form-floating mb-3 mb-md-0">
                                             <select class="form-select" aria-label="Default select example" name="jenis_kamar_id">
                                                 <option selected>-- Pilih Jenis Kamar --</option>
-                                                    <?php
-                                                        $query = "SELECT jenis_kamar_id, jenis_kamar FROM jenis_kamar ORDER BY jenis_kamar_id";
-                                                        $sql = mysqli_query ($conn, $query);
-                                                        
-                                                        while ($hasil = mysqli_fetch_array ($sql)) {
-                                                            $jenis_kamar = $hasil['jenis_kamar'];
-                                                            $jenis_kamar_id = $hasil['jenis_kamar_id'];
-                                                    ?>
-                                                <option value="<?php echo $jenis_kamar_id ?>"><?php echo $jenis_kamar ?></option>
-                                                <?php }?>
+                                                <?php
+                                                $query = "SELECT jenis_kamar_id, jenis_kamar FROM jenis_kamar ORDER BY jenis_kamar_id";
+                                                $sql = mysqli_query($conn, $query);
+
+                                                while ($hasil = mysqli_fetch_array($sql)) {
+                                                    $jenis_kamar = $hasil['jenis_kamar'];
+                                                    $jenis_kamar_id = $hasil['jenis_kamar_id'];
+                                                ?>
+                                                    <option value="<?php echo $jenis_kamar_id ?>"><?php echo $jenis_kamar ?></option>
+                                                <?php } ?>
                                             </select>
                                             <label for="jenis_kamar_id">Jenis Kamar</label>
                                         </div>
@@ -49,16 +81,16 @@
                                         <div class="form-floating mb-3 mb-md-0">
                                             <select class="form-select" aria-label="Default select example" name="tempat_tidur_id">
                                                 <option selected>-- Pilih Tempat Tidur --</option>
-                                                    <?php
-                                                        $query = "SELECT tempat_tidur_id, jenis_tempat_tidur FROM tempat_tidur ORDER BY tempat_tidur_id";
-                                                        $sql = mysqli_query ($conn, $query);
-                                                        
-                                                        while ($hasil = mysqli_fetch_array ($sql)) {
-                                                            $jenis_tempat_tidur = $hasil['jenis_tempat_tidur'];
-                                                            $tempat_tidur_id = $hasil['tempat_tidur_id'];
-                                                    ?>
-                                                <option value="<?php echo $tempat_tidur_id ?>"><?php echo $jenis_tempat_tidur ?></option>
-                                                <?php }?>
+                                                <?php
+                                                $query = "SELECT tempat_tidur_id, jenis_tempat_tidur FROM tempat_tidur ORDER BY tempat_tidur_id";
+                                                $sql = mysqli_query($conn, $query);
+
+                                                while ($hasil = mysqli_fetch_array($sql)) {
+                                                    $jenis_tempat_tidur = $hasil['jenis_tempat_tidur'];
+                                                    $tempat_tidur_id = $hasil['tempat_tidur_id'];
+                                                ?>
+                                                    <option value="<?php echo $tempat_tidur_id ?>"><?php echo $jenis_tempat_tidur ?></option>
+                                                <?php } ?>
                                             </select>
                                             <label for="tempat_tidur_id">Tempat Tidur</label>
                                         </div>
@@ -121,7 +153,7 @@
     </div>
     <!-- Scripts -->
     <?php include 'layout/scripts.php' ?>
-    
+
 </body>
 
 </html>
