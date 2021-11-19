@@ -1,13 +1,19 @@
 <?php
 include "../../config.php";
 
-
+session_start();
+ 
+if (!isset($_SESSION['username'])) {
+    header("Location: index.php");
+}
+ 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <!-- Head -->
-<?php include 'layout/head.php' ?>
+<?php include '../layout/head.php' ?>
 
 <body class="sb-nav-fixed">
     <!-- Navbar -->
@@ -20,7 +26,8 @@ include "../../config.php";
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Data Kamar</h1>
+                <h1 class="mt-4"> <?php echo "Selamat Datang,".$_SESSION['username']."!" ?>   </h1>
+                    <h1 class="mt-4">Data Kamar </h1>   
                     <?php
                     error_reporting(0);
                         if($_GET['pesan'] != NULL){
@@ -38,7 +45,7 @@ include "../../config.php";
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table me-1"></i>
-                            DataTable Example
+                            DataTable Example 
                         </div>
                         <div class="card-body">
                             <table id="datatablesSimple">
@@ -114,7 +121,7 @@ include "../../config.php";
         </div>
     </div>
     <!-- Scripts -->
-    <?php include 'layout/scripts.php' ?>
+    <?php include '../layout/scripts.php' ?>
 </body>
 
 </html>
