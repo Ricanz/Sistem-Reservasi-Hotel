@@ -66,18 +66,34 @@ if (isset($_POST['submit'])) {
                             DataTable Example
                         </div>
                         <div class="card-body">
+                        <?php
+                            // Display selected user data based on id
+                            // Getting id from url
+                            $id = $_GET['id'];
+
+                            // Fetech user data based on id
+                            $result = mysqli_query($conn, "SELECT * FROM jenis_kamar WHERE jenis_kamar_id=$id");
+
+                            while ($data = mysqli_fetch_array($result)) {
+                                $jenis_kamar_id = $result['jenis_kamar_id'];
+                                $jenis_kamar = $result['jenis_kamar'];
+                                $kode_jenis_kamar = $result['kode_jenis_kamar'];
+                                $kapasitas = $result['kapasitas'];
+                                $deskripsi_kamar = $result['deskripsi_kamar'];
+                            }
+                            ?>
                             <form method="post" action="" name="submit">
                                 <input type="hidden" name="status_kamar" value="available">
                                 <div class="row mb-3">
                                     <div class="col-md-6">
                                         <div class="form-floating mb-3 mb-md-0">
-                                            <input class="form-control" id="jenis_kamar" type="text" placeholder="Masukkan Jenis Kamar" name="jenis_kamar">
+                                            <input class="form-control" id="jenis_kamar" type="text" value="<?php echo $jenis_kamar ?>" placeholder="Masukkan Jenis Kamar" name="jenis_kamar">
                                                 <label for="jenis_kamar">Jenis Kamar</label>
                                             </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating mb-3 mb-md-0">
-                                            <input class="form-control" id="kode_jenis_kamar" type="text" placeholder="Masukkan Kode Jenis Kamar" name="kode_jenis_kamar">
+                                            <input class="form-control" id="kode_jenis_kamar" type="text" value="<?php echo $kode_jenis_kamar ?>" placeholder="Masukkan Kode Jenis Kamar" name="kode_jenis_kamar">
                                             <label for="kode_jenis_kamar">Kode Jenis Kamar</label>
                                             
                                         </div>
@@ -86,7 +102,7 @@ if (isset($_POST['submit'])) {
                                 <div class="row mb-3">
                                     <div class="col-md-4">
                                         <div class="form-floating mb-3 mb-md-0">
-                                            <input class="form-control" id="kapasitas" type="text" placeholder="Masukkan Jumlah Kapasitas" name="kapasitas">
+                                            <input class="form-control" id="kapasitas" type="text" value="<?php echo $kapasitas ?>" placeholder="Masukkan Jumlah Kapasitas" name="kapasitas">
                                             <label for="kapasitas">Kapasitas</label>
                                         </div>
                                     </div>
@@ -100,14 +116,14 @@ if (isset($_POST['submit'])) {
                                 <div class="row mb-3">
                                     <div class="col-md-12">
                                         <div class="form-floating mb-3">
-                                            <textarea class="form-control" name="deskripsi_kamar" id="deskripsi_kamar" cols="" rows=""></textarea>
+                                            <textarea class="form-control" name="deskripsi_kamar" value="<?php echo $deskripsi ?>" id="deskripsi_kamar" cols="" rows=""></textarea>
                                             <label for="deskripsi_kamar">Deskripsi Kamar</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="mt-4 mb-0">
                                     <div class="d-grid">
-                                        <button type="submit" name="submit" class="btn btn-primary btn-block">Tambah Jenis Kamar</button>
+                                        <button type="submit" name="submit" class="btn btn-primary btn-block">Sunting Jenis Kamar</button>
                                     </div>
                                 </div>
                             </form>
