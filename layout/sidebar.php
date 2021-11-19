@@ -49,7 +49,7 @@
                 <div class="collapse" id="jenis-kamar" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link" href="../jenis-kamar/index.php">Data Jenis Kamar</a>
-                        <a class="nav-link" href="layout-sidenav-light.html">Tambah Data Jenis Kamar</a>
+                        <a class="nav-link" href="../jenis-kamar/tambah.php">Tambah Data Jenis Kamar</a>
                     </nav>
                 </div>
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#tarif" aria-expanded="false" aria-controls="collapsePages">
