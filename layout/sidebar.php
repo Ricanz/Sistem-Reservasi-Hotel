@@ -73,11 +73,11 @@
                     Pembayaran
                 </a>
                 <div class="sb-sidenav-menu-heading">Laporan</div>
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="../laporan/tahunan.php">
                     <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                     Laporan Tahunan
                 </a>
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="../laporan/bulanan.php">
                     <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                     Laporan Bulanan
                 </a>
