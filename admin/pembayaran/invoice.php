@@ -1,3 +1,5 @@
+<?php include '../../config.php' ?>
+
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -21,46 +23,45 @@
     }
 </style>
 
-<?php
-$no = 1;
-$query = "SELECT * FROM pembayaran  INNER JOIN pelanggan ON pembayaran.pelanggan_id = pelanggan.pelanggan_id INNER JOIN kamar ON pembayaran.jenis_kamar_id = kamar.kamar_id WHERE pembayaran_id='".$_GET['id']."'";
-$sql = mysqli_query($conn, $query);
 
-while ($hasil = mysqli_fetch_array($sql)) {
-    $pembayaran_id = $hasil['pembayaran_id'];
-    $pelanggan_id = $hasil['nama_pelanggan'];
-    $user_id = $hasil['nama'];
-    $nomor_nota = $hasil['nomor_nota'];
-    $hari = $hasil['hari'];
-    $jenis_kamar_id = $hasil['no_kamar'];
-    $total_akhir = $hasil['total_akhir'];
-    $bayar = $hasil['bayar'];
-    $kembalian = $hasil['kembalian'];
-    $tgl_bayar = $hasil['tgl_bayar'];
-?>
 
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
+        <?php
+            // Display selected user data based on id
+            // Getting id from url
+            $id = $_GET['id'];
+
+            // Fetech user data based on id
+            $result = mysqli_query($conn, "SELECT * FROM pembayaran WHERE pembayaran_id=$id");
+
+            while ($data = mysqli_fetch_array($result)) {
+                $id = $data['pembayaran_id'];
+                $pelanggan_id = $data['pelanggan_id'];
+                $user_id = $data['user_id'];
+                $nomor_nota = $data['nomor_nota'];
+                $hari = $data['hari'];
+                $jenis_kamar_id = $data['jenis_kamar_id'];
+                $total_awal = $data['total_awal'];
+                $pajak = $data['pajak'];
+                $total_akhir = $data['total_akhir'];
+                $bayar = $data['bayar'];
+                $kembalian = $data['kembalian'];
+                $tgl_bayar = $data['tgl_bayar'];
+                
+            }
+            ?>
             <div class="invoice-title">
                 <h2>Invoice</h2>
-                <h3 class="pull-right">Order # 12345</h3>
+                <h3 class="pull-right">Nomor Nota # <?php echo $nomor_nota ?></h3>
             </div>
             <hr>
             <div class="row">
                 <div class="col-xs-6">
                     <address>
-                        <strong>Billed To:</strong><br>
-                        John Smith<br>
-                        1234 Main<br>
-                        Apt. 4B<br>
-                        Springfield, ST 54321
-                    </address>
-                </div>
-                <div class="col-xs-6 text-right">
-                    <address>
-                        <strong>Shipped To:</strong><br>
-                        Jane Smith<br>
+                        <strong>Ditujukan ke:</strong><br>
+                        <?php echo $pelanggan_id ?><br>
                         1234 Main<br>
                         Apt. 4B<br>
                         Springfield, ST 54321
@@ -70,15 +71,15 @@ while ($hasil = mysqli_fetch_array($sql)) {
             <div class="row">
                 <div class="col-xs-6">
                     <address>
-                        <strong>Payment Method:</strong><br>
-                        Visa ending **** 4242<br>
+                        <strong>Metode Pembayaran:</strong><br>
+                        Cash (Langsung)<br>
                         jsmith@email.com
                     </address>
                 </div>
                 <div class="col-xs-6 text-right">
                     <address>
-                        <strong>Order Date:</strong><br>
-                        March 7, 2014<br><br>
+                        <strong>Tanggal Bayar:</strong><br>
+                        <?php echo $tgl_bayar ?><br><br>
                     </address>
                 </div>
             </div>
@@ -89,56 +90,56 @@ while ($hasil = mysqli_fetch_array($sql)) {
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><strong>Order summary</strong></h3>
+                    <h3 class="panel-title"><strong>Keterangan Pembayaran</strong></h3>
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive">
                         <table class="table table-condensed">
                             <thead>
                                 <tr>
-                                    <td><strong>Item</strong></td>
-                                    <td class="text-center"><strong>Price</strong></td>
-                                    <td class="text-center"><strong>Quantity</strong></td>
-                                    <td class="text-right"><strong>Totals</strong></td>
+                                    <td><strong>Jenis Kamar</strong></td>
+                                    <td class="text-center"><strong>Lama Menginap</strong></td>
+                                    <td class="text-center"><strong>    </strong></td>
+                                    <td class="text-right"><strong>Total Harga</strong></td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <!-- foreach ($order->lineItems as $line) or some such thing here -->
                                 <tr>
-                                    <td>BS-200</td>
-                                    <td class="text-center">$10.99</td>
-                                    <td class="text-center">1</td>
-                                    <td class="text-right">$10.99</td>
-                                </tr>
-                                <tr>
-                                    <td>BS-400</td>
-                                    <td class="text-center">$20.00</td>
-                                    <td class="text-center">3</td>
-                                    <td class="text-right">$60.00</td>
-                                </tr>
-                                <tr>
-                                    <td>BS-1000</td>
-                                    <td class="text-center">$600.00</td>
-                                    <td class="text-center">1</td>
-                                    <td class="text-right">$600.00</td>
+                                    <td><?php echo $jenis_kamar_id ?></td>
+                                    <td class="text-center"><?php echo $hari ?> Hari</td>
+                                    <td class="text-center"></td>
+                                    <td class="text-right"><?php echo $total_awal ?></td>
                                 </tr>
                                 <tr>
                                     <td class="thick-line"></td>
                                     <td class="thick-line"></td>
                                     <td class="thick-line text-center"><strong>Subtotal</strong></td>
-                                    <td class="thick-line text-right">$670.99</td>
+                                    <td class="thick-line text-right"><?php echo $total_awal ?></td>
                                 </tr>
                                 <tr>
                                     <td class="no-line"></td>
                                     <td class="no-line"></td>
-                                    <td class="no-line text-center"><strong>Shipping</strong></td>
-                                    <td class="no-line text-right">$15</td>
+                                    <td class="no-line text-center"><strong>Pajak</strong></td>
+                                    <td class="no-line text-right"><?php echo $pajak ?></td>
                                 </tr>
                                 <tr>
                                     <td class="no-line"></td>
                                     <td class="no-line"></td>
                                     <td class="no-line text-center"><strong>Total</strong></td>
-                                    <td class="no-line text-right">$685.99</td>
+                                    <td class="no-line text-right"><?php echo $total_akhir ?></td>
+                                </tr>
+                                <tr>
+                                    <td class="no-line"></td>
+                                    <td class="no-line"></td>
+                                    <td class="no-line text-center"><strong>Total Bayar</strong></td>
+                                    <td class="no-line text-right"><?php echo $bayar ?></td>
+                                </tr>
+                                <tr>
+                                    <td class="no-line"></td>
+                                    <td class="no-line"></td>
+                                    <td class="no-line text-center"><strong>Kembalian</strong></td>
+                                    <td class="no-line text-right"><?php echo $kembalian ?></td>
                                 </tr>
                             </tbody>
                         </table>
