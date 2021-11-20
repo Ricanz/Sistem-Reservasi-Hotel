@@ -7,21 +7,18 @@ if (isset($_POST['submit'])) {
     $lantai = $_POST['lantai'];
     $bebas_rokok = $_POST['bebas_rokok'];
     $status_kamar = $_POST['status_kamar'];
-
-    //insert ke tabel
-    $query = "INSERT INTO kamar	values('','$jenis_kamar_id', '$tempat_tidur_id', '$no_kamar', '$lantai', '$bebas_rokok','$status_kamar')";
+    $harga = mysqli_query ($conn, "SELECT harga FROM jenis_kamar WHERE jenis_kamar_id = $jenis_kamar_id"); 
+    $hasil = mysqli_fetch_row($harga);
+    $query = "INSERT INTO kamar	values('','$jenis_kamar_id', '$tempat_tidur_id', '$no_kamar', '$lantai', '$bebas_rokok','$status_kamar','$hasil[0]')";
 
     //update total jenis kamar
-    $query = "UPDATE jenis_kamar
+    $query1 = "UPDATE jenis_kamar
     SET total = total + 1
     WHERE jenis_kamar_id = $jenis_kamar_id";
 
-    // $sql = mysqli_query($conn, "INSERT INTO kamar (jenis_kamar_id, tempat_tidur_id, no_kamar, lantai, bebas_rokok, status_kamar, status_kamar, tgl_masuk, tgl_keluar) 
-    // VALUES('$jenis_kamar_id', '$tempat_tidur_id', '$no_kamar', '$lantai', '$bebas_rokok','$status_kamar', '$tgl_masuk', '$tgl_keluar')");
-
-
-    $sql = mysqli_query ($conn, $query) or die (mysqli_error());
-	if ($sql) {
+    $sql2 = mysqli_query ($conn, $query1) or die (mysqli_error($conn));
+    $sql = mysqli_query ($conn, $query) or die (mysqli_error($conn));
+	if ($sql && $sql2) {
         $pesan = "Data kamar berhasil ditambah!";
         header('Location: index.php?pesan=". $pesan ."');	
 	} else {
@@ -30,7 +27,7 @@ if (isset($_POST['submit'])) {
 
     
 
-    // var_dump($query, $sql);
+    return var_dump($query, $sql);
 }
 ?>
 <!DOCTYPE html>
@@ -64,7 +61,7 @@ if (isset($_POST['submit'])) {
                                 <div class="row mb-3">
                                     <div class="col-md-6">
                                         <div class="form-floating mb-3 mb-md-0">
-                                            <select class="form-select" aria-label="Default select example" name="jenis_kamar_id">
+                                            <select class="form-select" aria-label="Default select example"  onchange="kamar()"  name="jenis_kamar_id">
                                                 <option selected>-- Pilih Jenis Kamar --</option>
                                                 <?php
                                                 $query = "SELECT jenis_kamar_id, jenis_kamar, harga FROM jenis_kamar ORDER BY jenis_kamar_id";
@@ -83,10 +80,10 @@ if (isset($_POST['submit'])) {
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating mb-3 mb-md-0">
-                                            <select class="form-select" aria-label="Default select example" name="tempat_tidur_id">
+                                            <select class="form-select" aria-label="Default select example"  name="tempat_tidur_id">
                                                 <option selected>-- Pilih Tempat Tidur --</option>
                                                 <?php
-                                                $query = "SELECT tempat_tidur_id, jenis_tempat_tidur FROM tempat_tidur ORDER BY tempat_tidur_id";
+                                                $query = "SELECT tempat_tidur_id, jenis_tempat_tidur FROM tempat_tidur ORDER BY tempat_tidur_id ";
                                                 $sql = mysqli_query($conn, $query);
 
                                                 while ($hasil = mysqli_fetch_array($sql)) {
