@@ -182,7 +182,7 @@ include "config.php";
                 </div>
             </div>
         </div>
-        <div class="section landing-section">
+        <!-- <div class="section landing-section">
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 ml-auto mr-auto">
@@ -234,7 +234,7 @@ include "config.php";
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 
     <?php include 'user-layout/footer.php' ?>
