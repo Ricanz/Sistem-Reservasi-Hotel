@@ -98,6 +98,7 @@ if ($_SESSION['username'] == null) {
                                         $status = $hasil['status'];
                                         $tgl_masuk = $hasil['tgl_masuk'];
                                         $tgl_keluar = $hasil['tgl_keluar'];
+                                        $status = $hasil['status'];
                                     ?>
                                         <tr>
                                             <td><?php echo $no; ?></td>
@@ -114,7 +115,11 @@ if ($_SESSION['username'] == null) {
                                             <td style="text-align: center;">
                                                 <a href="delete.php?id=<?php echo $pelanggan_id; ?>" class="btn btn-danger">Hapus</a>
                                                 <a href="edit.php?id=<?php echo $pelanggan_id; ?>" class="btn btn-success">Sunting</a>
-                                                <a href="../pembayaran/bayar.php?id=<?php echo $pelanggan_id; ?>" class="btn btn-warning">Checkout</a>
+                                                <?php 
+                                                if($status == 0){?>
+                                                    <a href="../pembayaran/bayar.php?id=<?php echo $pelanggan_id; ?>" class="btn btn-warning">Checkout</a>
+                                                <?php } ?>
+                                          
                                             </td>
                                         </tr>
                                     <?php $no++;

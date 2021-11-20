@@ -17,21 +17,23 @@ if (isset($_POST['submit'])) {
     // //insert ke tabel
     // $query = "UPDATE pembayaran SET pelanggan_id='$pelanggan_id',user_id='$user_id',nomor_nota='$nomor_nota',
     // hari='$hari',total_awal='$total_awal', pajak='$pajak', total_akhir='$total_akhir', bayar='$bayar', kembalian='$kembalian' kamar_id='$kamar_id' WHERE pembayaran_id=$id";
-
+    $query1 = "UPDATE pelanggan
+    SET status = 1
+    WHERE pelanggan_id = $pelanggan_id";
 
     // insert ke tabel
     $query = "INSERT INTO pembayaran values('', '$pelanggan_id', '$user_id', '$nomor_nota', '$hari', '$kamar_id', '$total_awal', '$pajak', '$total_akhir', '$bayar', '$kembalian', '$tgl_bayar')";
 
     //update total jenis kamar
-    var_dump($query);
+    // var_dump($query);
 
     // $query1 = "DELETE FROM pelanggan WHERE pelanggan_id=$pelanggan_id";
 
     // $sql = mysqli_query($conn, "INSERT INTO kamar (jenis_kamar_id, tempat_tidur_id, no_kamar, lantai, bebas_rokok, status_kamar, status_kamar, tgl_masuk, tgl_keluar) 
     // VALUES('$jenis_kamar_id', '$tempat_tidur_id', '$no_kamar', '$lantai', '$bebas_rokok','$status_kamar', '$tgl_masuk', '$tgl_keluar')");
 
-
     $sql = mysqli_query($conn, $query) or die(mysqli_error());
+    $sql = mysqli_query($conn, $query1) or die(mysqli_error());
     // $sql2 = mysqli_query($conn, $query1) or die(mysqli_error());
     if ($sql) {
         $pesan = "Data kamar berhasil ditambah!";
