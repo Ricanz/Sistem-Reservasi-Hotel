@@ -24,11 +24,15 @@ if (isset($_POST['submit'])) {
 
     //update total jenis kamar
     var_dump($query);
+
+    // $query1 = "DELETE FROM pelanggan WHERE pelanggan_id=$pelanggan_id";
+
     // $sql = mysqli_query($conn, "INSERT INTO kamar (jenis_kamar_id, tempat_tidur_id, no_kamar, lantai, bebas_rokok, status_kamar, status_kamar, tgl_masuk, tgl_keluar) 
     // VALUES('$jenis_kamar_id', '$tempat_tidur_id', '$no_kamar', '$lantai', '$bebas_rokok','$status_kamar', '$tgl_masuk', '$tgl_keluar')");
 
 
     $sql = mysqli_query($conn, $query) or die(mysqli_error());
+    // $sql2 = mysqli_query($conn, $query1) or die(mysqli_error());
     if ($sql) {
         $pesan = "Data kamar berhasil ditambah!";
         header('Location: index.php?pesan=". $pesan ."');
