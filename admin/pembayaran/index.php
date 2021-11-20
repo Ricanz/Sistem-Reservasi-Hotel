@@ -83,6 +83,7 @@ if ($_SESSION['username'] == null) {
                                     $sql = mysqli_query($conn, $query);
 
                                     while ($hasil = mysqli_fetch_array($sql)) {
+                                        $pembayaran_id = $hasil['pembayaran_id'];
                                         $pelanggan_id = $hasil['nama_pelanggan'];
                                         $user_id = $hasil['nama'];
                                         $nomor_nota = $hasil['nomor_nota'];
@@ -104,8 +105,8 @@ if ($_SESSION['username'] == null) {
                                             <td><?php echo $kembalian; ?></td>
                                             <td><?php echo $tgl_bayar; ?></td>
                                             <td style="text-align: center;">
-                                                <a href="delete.php?id=<?php echo $kamar_id; ?>" class="btn btn-danger">Hapus</a>
-                                                <a href="edit.php?id=<?php echo $kamar_id; ?>" class="btn btn-success">Sunting</a>
+                                                <!-- <a href="delete.php?id=<?php echo $pembayaran_id; ?>" class="btn btn-danger">Hapus</a> -->
+                                                <a href="invoice.php?id=<?php echo $pembayaran_id; ?>" class="btn btn-success">Sunting</a>
                                             </td>
                                         </tr>
                                     <?php $no++;
