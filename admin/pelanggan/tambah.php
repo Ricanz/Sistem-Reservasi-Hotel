@@ -11,11 +11,12 @@ if (isset($_POST['submit'])) {
     $kamar_id = $_POST['kamar_id'];
     $tgl_masuk = $_POST['tgl_masuk'];
     $tgl_keluar = $_POST['tgl_keluar'];
+    $jenkel = $_POST['jenkel'];
     $harga = mysqli_query ($conn, "SELECT harga FROM kamar WHERE kamar_id = $kamar_id"); 
     $hasil = mysqli_fetch_row($harga);
 
     //insert ke tabel
-    $query = "INSERT INTO pelanggan	values('', '$nama_pelanggan', '$no_identitas', '$no_hp', '$alamat','$email', '$orang', '$status', '$kamar_id', '$tgl_masuk', '$tgl_keluar', '$hasil[0]')";
+    $query = "INSERT INTO pelanggan	values('', '$nama_pelanggan', '$no_identitas', '$no_hp', '$alamat','$email', '$orang', '$status', '$kamar_id', '$tgl_masuk', '$tgl_keluar', '$hasil[0]', '$jenkel')";
 
     $query1 = "UPDATE kamar
     SET status_kamar = 'tidak tersedia'
@@ -131,6 +132,12 @@ if (isset($_POST['submit'])) {
                                                 <?php } ?>
                                             </select>
                                             <label for="tempat_tidur_id">No Kamar</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-floating mb-3 mb-md-0">
+                                            <input class="form-control" id="jenkel" type="text" placeholder="Masukkan Nomor Kamar" name="jenkel">
+                                            <label for="jenkel">Jenis Kelamin</label>
                                         </div>
                                     </div>
                                 </div>

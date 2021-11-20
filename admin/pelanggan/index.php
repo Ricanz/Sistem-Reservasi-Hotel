@@ -60,6 +60,7 @@ if ($_SESSION['username'] == null) {
                                         <th>Kamar</th>
                                         <th>Tanggal Masuk</th>
                                         <th>Tanggal Keluar</th>
+                                        <th>Jenis Kelamin</th>
                                         <th style="text-align: center;">Aksi</th>
                                     </tr>
                                 </thead>
@@ -75,6 +76,7 @@ if ($_SESSION['username'] == null) {
                                         <th>Kamar</th>
                                         <th>Tanggal Masuk</th>
                                         <th>Tanggal Keluar</th>
+                                        <th>Jenis Kelamin</th>
                                         <th style="text-align: center;">Aksi</th>
                                     </tr>
                                 </tfoot>
@@ -97,6 +99,7 @@ if ($_SESSION['username'] == null) {
                                         $tgl_masuk = $hasil['tgl_masuk'];
                                         $tgl_keluar = $hasil['tgl_keluar'];
                                         $status = $hasil['status'];
+                                        $jenkel = $hasil['jenkel'];
                                     ?>
                                         <tr>
                                             <td><?php echo $no; ?></td>
@@ -109,6 +112,7 @@ if ($_SESSION['username'] == null) {
                                             <td><?php echo $jenis_kamar; ?></td>
                                             <td><?php echo $tgl_masuk; ?></td>
                                             <td><?php echo $tgl_keluar; ?></td>
+                                            <td><?php echo $jenkel; ?></td>
                                             <td style="text-align: center;">
                                                 <a href="delete.php?id=<?php echo $pelanggan_id; ?>" class="btn btn-danger">Hapus</a>
                                                 <a href="edit.php?id=<?php echo $pelanggan_id; ?>" class="btn btn-success">Sunting</a>

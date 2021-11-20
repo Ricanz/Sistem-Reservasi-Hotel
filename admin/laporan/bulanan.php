@@ -27,6 +27,27 @@ if ($_SESSION['username'] == null) {
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
+                <!-- <form method="post" action="" name="submit">
+                        <div class="row mb-3">
+                            <div class="col-md-2">
+                                <h1 class="mt-4">Data Tamu </h1>
+                            </div>
+                            <div class="col-md-4">
+                                
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-floating mb-3 mb-md-0">
+                                    <input class="form-control" id="tgl_masuk" type="text" placeholder="Masukkan Nomor Kamar" name="tgl_masuk">
+                                    <label for="tgl_masuk">Tahun</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-floating mb-3 mb-md-0">
+                                    <button class="btn btn-success">Cetak</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form> -->
                     <h1 class="mt-4">Data Tamu </h1>
                     <?php
                     error_reporting(0);

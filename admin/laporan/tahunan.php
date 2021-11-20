@@ -27,7 +27,7 @@ if ($_SESSION['username'] == null) {
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <form method="post" action="" name="submit">
+                    <!-- <form method="post" action="" name="submit">
                         <div class="row mb-3">
                             <div class="col-md-2">
                                 <h1 class="mt-4">Data Tamu </h1>
@@ -47,7 +47,8 @@ if ($_SESSION['username'] == null) {
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </form> -->
+                    <h1 class="mt-4">Data Tamu </h1>
                     <?php
                     error_reporting(0);
                     if ($_GET['pesan'] != NULL) {

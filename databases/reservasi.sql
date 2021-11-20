@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 19, 2021 at 04:24 PM
+-- Generation Time: Nov 20, 2021 at 08:39 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -92,18 +92,22 @@ CREATE TABLE `jenis_kamar` (
   `kode_jenis_kamar` varchar(2) DEFAULT NULL,
   `kapasitas` int(11) DEFAULT NULL,
   `deskripsi_kamar` text DEFAULT NULL,
-  `foto` varchar(20) DEFAULT NULL
+  `foto` varchar(255) DEFAULT NULL,
+  `total` int(11) DEFAULT NULL,
+  `tempat_tidur_id` int(11) DEFAULT NULL,
+  `harga` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `jenis_kamar`
 --
 
-INSERT INTO `jenis_kamar` (`jenis_kamar_id`, `jenis_kamar`, `kode_jenis_kamar`, `kapasitas`, `deskripsi_kamar`, `foto`) VALUES
-(1, 'Superior', 'SP', 2, '- Menampilkan pemandangan kota <br>\r\n- WiFi Gratis <br>\r\n- Televisi LCD dengan channel TV premium channels <br>\r\n- Kamar mandi pribadi dengan shower, jubah mandi dan sandal <br>\r\n- Brankas (muat laptop), meja tulis, dan telepon; tempat tidur lipat / tambahan tersedia berdasarkan permintaan\r\n', 'superior.jpeg'),
-(2, 'Executive Deluxe', 'ED', 2, '- Menampilkan pemandangan kota <br>\r\n- WiFi Gratis <br>\r\n- Televisi LCD dengan channel TV premium channels <br>\r\n- Kamar mandi pribadi dengan shower, jubah mandi dan sandal <br>\r\n- Brankas (muat laptop), meja tulis, dan telepon; tempat tidur lipat / tambahan tersedia berdasarkan permintaan\r\n', 'executive-deluxe.jpg'),
-(3, 'Double Deluxe', 'DD', 2, '- Menampilkan pemandangan kota <br>\r\n- WiFi Gratis <br>\r\n- Televisi LCD dengan channel TV premium channels <br>\r\n- Kamar mandi pribadi dengan shower, jubah mandi dan sandal <br>\r\n- Brankas (muat laptop), meja tulis, dan telepon; tempat tidur lipat / tambahan tersedia berdasarkan permintaan\r\n', 'double-deluxe.jpg'),
-(4, 'Junior Suite', 'JS', 1, '- Menampilkan pemandangan kota <br>\r\n- WiFi Gratis <br>\r\n- Televisi LCD dengan channel TV premium channels <br>\r\n- Kamar mandi pribadi dengan shower, jubah mandi dan sandal <br>\r\n- Brankas (muat laptop), meja tulis, dan telepon; tempat tidur lipat / tambahan tersedia berdasarkan permintaan\r\n', 'junior-suite.jpg');
+INSERT INTO `jenis_kamar` (`jenis_kamar_id`, `jenis_kamar`, `kode_jenis_kamar`, `kapasitas`, `deskripsi_kamar`, `foto`, `total`, `tempat_tidur_id`, `harga`) VALUES
+(1, 'Superior', 'SP', 5, '                                                                                        - Menampilkan pemandangan kota <br>\r\n- WiFi Gratis <br>\r\n- Televisi LCD dengan channel TV premium channels <br>\r\n- Kamar mandi pribadi dengan shower, jubah mandi dan sandal <br>\r\n- Brankas (muat laptop), meja tulis, dan telepon; tempat tidur lipat / tambahan tersedia berdasarkan permintaan\r\n                                                                                        ', 'superior.jpeg', 22, 1, 120000),
+(2, 'Executive Deluxe', 'ED', 2, '- Menampilkan pemandangan kota <br>\r\n- WiFi Gratis <br>\r\n- Televisi LCD dengan channel TV premium channels <br>\r\n- Kamar mandi pribadi dengan shower, jubah mandi dan sandal <br>\r\n- Brankas (muat laptop), meja tulis, dan telepon; tempat tidur lipat / tambahan tersedia berdasarkan permintaan\r\n', 'executive-deluxe.jpg', 18, 2, 300000),
+(3, 'Double Deluxe', 'DD', 2, '- Menampilkan pemandangan kota <br>\r\n- WiFi Gratis <br>\r\n- Televisi LCD dengan channel TV premium channels <br>\r\n- Kamar mandi pribadi dengan shower, jubah mandi dan sandal <br>\r\n- Brankas (muat laptop), meja tulis, dan telepon; tempat tidur lipat / tambahan tersedia berdasarkan permintaan\r\n', 'double-deluxe.jpg', 30, 3, 23000),
+(4, 'Junior Suite', 'JS', 1, '- Menampilkan pemandangan kota <br>\r\n- WiFi Gratis <br>\r\n- Televisi LCD dengan channel TV premium channels <br>\r\n- Kamar mandi pribadi dengan shower, jubah mandi dan sandal <br>\r\n- Brankas (muat laptop), meja tulis, dan telepon; tempat tidur lipat / tambahan tersedia berdasarkan permintaan\r\n', 'junior-suite.jpg', 26, 4, 234000),
+(12, 'Kamar 4', '12', 12, '', 'WhatsApp Image 2021-11-17 at 9.13.55 AM.jpeg', 32, 2, 1200000);
 
 -- --------------------------------------------------------
 
@@ -130,34 +134,30 @@ CREATE TABLE `kamar` (
   `lantai` int(3) DEFAULT NULL,
   `bebas_rokok` varchar(10) DEFAULT NULL,
   `status_kamar` varchar(20) DEFAULT NULL,
-  `tgl_masuk` date DEFAULT NULL,
-  `tgl_keluar` date DEFAULT NULL
+  `harga` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `kamar`
 --
 
-INSERT INTO `kamar` (`kamar_id`, `jenis_kamar_id`, `tempat_tidur_id`, `no_kamar`, `lantai`, `bebas_rokok`, `status_kamar`, `tgl_masuk`, `tgl_keluar`) VALUES
-(1, 1, 1, '311', 3, 'YA', 'Available', '2021-11-19', '2021-11-20'),
-(2, 2, 2, '200', 2, 'YA', 'Available', '2021-11-19', '2021-11-19'),
-(24, 2, 2, '233', 2, '0', 'available', '2021-11-19', '2021-11-19'),
-(25, 2, 2, '233', 2, '0', 'available', '2021-11-19', '2021-11-19'),
-(35, 1, 2, '121', 1, '0', 'available', '2021-11-19', '2021-11-19'),
-(36, 4, 1, '231', 1, '0', 'available', '2021-11-19', '2021-11-20'),
-(38, 1, 2, '123', 2, '0', 'available', '2021-11-19', '2021-11-20'),
-(39, 3, 2, '234', 2, '0', 'available', '2021-11-19', '2021-11-19'),
-(40, 2, 2, '223', 1, '1', 'available', '2021-11-19', '2021-11-19'),
-(41, 2, 2, '223', 1, '1', 'available', '2021-11-19', '2021-11-19'),
-(42, 2, 2, '234', 2, '1', 'available', '2021-11-19', '2021-11-19'),
-(43, 2, 2, '234', 2, '1', 'available', '2021-11-19', '2021-11-19'),
-(44, 2, 2, '123', 233, '0', 'available', '2021-11-19', '2021-11-19'),
-(45, 2, 2, '123', 233, '0', 'available', '2021-11-19', '2021-11-19'),
-(46, 2, 2, '234', 2, '0', 'available', '2021-11-19', '2021-11-19'),
-(47, 2, 2, '234', 2, '0', 'available', '2021-11-19', '2021-11-19'),
-(48, 2, 2, '234', 2, '0', 'available', '2021-11-19', '2021-11-19'),
-(49, 2, 2, '111', 1, '0', 'available', '2021-11-19', '2021-11-19'),
-(50, 1, 1, '123', 123, '0', 'available', '2021-11-19', '2021-11-19');
+INSERT INTO `kamar` (`kamar_id`, `jenis_kamar_id`, `tempat_tidur_id`, `no_kamar`, `lantai`, `bebas_rokok`, `status_kamar`, `harga`) VALUES
+(25, 2, 2, '7000', 2, '0', 'available', 300000),
+(40, 2, 2, '223', 1, '1', 'tersedia', 300000),
+(41, 2, 2, '223', 1, '1', 'tersedia', 300000),
+(42, 2, 2, '234', 2, '1', 'tersedia', 300000),
+(43, 2, 2, '234', 2, '1', 'tersedia', 300000),
+(44, 2, 2, '123', 233, '0', 'tersedia', 300000),
+(45, 2, 2, '123', 233, '0', 'tersedia', 300000),
+(47, 2, 2, '2000', 2, '0', 'tersedia', 300000),
+(48, 2, 2, '234', 2, '0', 'tersedia', 300000),
+(49, 2, 2, '111', 1, '0', 'tersedia', 300000),
+(51, 2, 2, '444', 4, '0', 'tersedia', 300000),
+(53, 1, 3, '568', 5, '0', 'tersedia', 120000),
+(54, 2, 2, '1000', 10, '1', 'tersedia', NULL),
+(55, 2, 3, '123', 2, '1', 'tersedia', 300000),
+(56, 2, 4, '123', 34, '0', 'tidak tersedia', 300000),
+(57, 2, 4, '450', 4, '0', 'tersedia', 300000);
 
 -- --------------------------------------------------------
 
@@ -194,22 +194,28 @@ CREATE TABLE `pelanggan` (
   `pelanggan_id` int(11) NOT NULL,
   `nama_pelanggan` varchar(50) DEFAULT NULL,
   `no_identitas` varchar(20) DEFAULT NULL,
-  `nama_institusi` varchar(30) DEFAULT NULL,
   `no_hp` varchar(15) DEFAULT NULL,
-  `alamat_pelanggan` varchar(200) DEFAULT NULL,
-  `email_pelanggan` varchar(100) DEFAULT NULL,
-  `status_pelanggan` varchar(20) DEFAULT NULL,
-  `username_pel` varchar(20) DEFAULT NULL,
-  `password_pel` varchar(20) DEFAULT NULL,
-  `tgl_reservasi` date DEFAULT NULL
+  `alamat` varchar(200) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `orang` int(3) DEFAULT NULL,
+  `status` varchar(20) DEFAULT NULL,
+  `kamar_id` int(11) DEFAULT NULL,
+  `tgl_masuk` date DEFAULT NULL,
+  `tgl_keluar` date DEFAULT NULL,
+  `harga` double DEFAULT NULL,
+  `jenkel` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `pelanggan`
 --
 
-INSERT INTO `pelanggan` (`pelanggan_id`, `nama_pelanggan`, `no_identitas`, `nama_institusi`, `no_hp`, `alamat_pelanggan`, `email_pelanggan`, `status_pelanggan`, `username_pel`, `password_pel`, `tgl_reservasi`) VALUES
-(1, 'riyanti', '12345', 'KG Nih Bos', '0987654321', 'lalala', 'riyanti@gmail.com', 'apanih', 'riyanti', 'riyanti', '2021-11-19');
+INSERT INTO `pelanggan` (`pelanggan_id`, `nama_pelanggan`, `no_identitas`, `no_hp`, `alamat`, `email`, `orang`, `status`, `kamar_id`, `tgl_masuk`, `tgl_keluar`, `harga`, `jenkel`) VALUES
+(2, 'Sayang kamu coba', '12345678', '12345678', 'Jl. Menari Bersama', 'riyanti@gmail.com', 3, '0', 53, '2021-11-20', '2021-11-23', 120000, 'Cewe'),
+(6, 'tamu', '6256', '67535', '3ty36', 'hu@gmail.com', 23, '1', 48, '2021-11-20', '2021-11-23', 300000, 'Cowo'),
+(7, 'Riyanti', '7635', '27665', 'pelanggan', 'riyanti@gmail.com', 23, '0', 53, '2021-11-20', '2021-11-22', 120000, 'Cewe'),
+(9, 'Saefudin', '7524267', '765456', 'Jl. BRI Radio Dalam', 'saefudin@gmail.com', 2, '1', 55, '2021-11-20', '2021-11-22', 300000, 'Cowo'),
+(10, 'Hamin', '896745', '632536', 'H. Zainudin', 'hakim@gmail.com', 2, '0', 56, '2021-11-18', '2021-11-20', 300000, 'Cowo');
 
 -- --------------------------------------------------------
 
@@ -219,17 +225,30 @@ INSERT INTO `pelanggan` (`pelanggan_id`, `nama_pelanggan`, `no_identitas`, `nama
 
 CREATE TABLE `pembayaran` (
   `pembayaran_id` int(11) NOT NULL,
-  `reservasi_id` int(11) DEFAULT NULL,
-  `pegawai_id` int(11) DEFAULT NULL,
+  `pelanggan_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
   `nomor_nota` varchar(11) DEFAULT NULL,
-  `tgl_pembayaran` date DEFAULT NULL,
+  `hari` int(11) DEFAULT NULL,
+  `jenis_kamar_id` int(11) DEFAULT NULL,
   `total_awal` double DEFAULT NULL,
   `pajak` double DEFAULT NULL,
   `total_akhir` double DEFAULT NULL,
-  `deposit` double DEFAULT NULL,
-  `nama_pemilik_kartu` varchar(50) DEFAULT NULL,
-  `nomor_kartu` varchar(16) DEFAULT NULL
+  `bayar` double DEFAULT NULL,
+  `kembalian` double DEFAULT NULL,
+  `tgl_bayar` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pembayaran`
+--
+
+INSERT INTO `pembayaran` (`pembayaran_id`, `pelanggan_id`, `user_id`, `nomor_nota`, `hari`, `jenis_kamar_id`, `total_awal`, `pajak`, `total_akhir`, `bayar`, `kembalian`, `tgl_bayar`) VALUES
+(1, 2, 3, '231412', 20211120, NULL, 35235, 234, 324, 323, 32423, '2021-11-20'),
+(2, 2, 1, '123', 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(11, 2, 1, '12344', 2, 49, 600000, 60000, 660000, 4560000, 390000, '2021-11-20'),
+(12, 2, 1, '12344', 2, 49, 600000, 60000, 660000, 4560000, 3900000, '2021-11-20'),
+(16, 6, 1, '3566', 3, 48, 900000, 90000, 990000, 1000000, 10000, '2021-11-20'),
+(18, 9, 1, '56ty62', 2, 55, 600000, 60000, 660000, 700000, 40000, '2021-11-20');
 
 -- --------------------------------------------------------
 
@@ -298,16 +317,17 @@ INSERT INTO `roles` (`role_id`, `role`) VALUES
 CREATE TABLE `tarif` (
   `tarif_id` int(11) NOT NULL,
   `jenis_kamar_id` int(11) DEFAULT NULL,
-  `tarif` double DEFAULT NULL
+  `tarif` double DEFAULT NULL,
+  `tempat_tidur_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tarif`
 --
 
-INSERT INTO `tarif` (`tarif_id`, `jenis_kamar_id`, `tarif`) VALUES
-(1, 1, 900000),
-(2, 2, 3350000);
+INSERT INTO `tarif` (`tarif_id`, `jenis_kamar_id`, `tarif`, `tempat_tidur_id`) VALUES
+(1, 1, 10000, 2),
+(2, 2, 3350000, 4);
 
 -- --------------------------------------------------------
 
@@ -317,20 +337,19 @@ INSERT INTO `tarif` (`tarif_id`, `jenis_kamar_id`, `tarif`) VALUES
 
 CREATE TABLE `tempat_tidur` (
   `tempat_tidur_id` int(11) NOT NULL,
-  `jenis_tempat_tidur` varchar(10) DEFAULT NULL,
-  `jumlah_bed_tersedia` int(11) DEFAULT NULL,
-  `harga_tempat_tidur` double DEFAULT NULL
+  `jenis_tempat_tidur` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tempat_tidur`
 --
 
-INSERT INTO `tempat_tidur` (`tempat_tidur_id`, `jenis_tempat_tidur`, `jumlah_bed_tersedia`, `harga_tempat_tidur`) VALUES
-(1, 'Double', 50, 1),
-(2, 'Twin', 60, NULL),
-(3, 'King', 30, NULL),
-(4, 'Single', 41, NULL);
+INSERT INTO `tempat_tidur` (`tempat_tidur_id`, `jenis_tempat_tidur`) VALUES
+(1, 'Double'),
+(2, 'Twin'),
+(3, 'King'),
+(4, 'Single'),
+(7, 'Sizes');
 
 -- --------------------------------------------------------
 
@@ -340,7 +359,7 @@ INSERT INTO `tempat_tidur` (`tempat_tidur_id`, `jenis_tempat_tidur`, `jumlah_bed
 
 CREATE TABLE `users` (
   `user_id` int(11) NOT NULL,
-  `role_id` int(11) DEFAULT NULL,
+  `role` enum('admin','manager','staff') DEFAULT NULL,
   `nama` varchar(50) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
   `username` varchar(50) DEFAULT NULL,
@@ -353,11 +372,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `role_id`, `nama`, `email`, `username`, `password`, `no_ktp`, `no_hp`) VALUES
-(1, 1, 'admin', 'admin@gmail.com', 'admin', 'admin', '1234', '1234'),
-(2, 2, 'manager', 'manager@gmail.com', 'manager', 'manager', '1234', '1234'),
-(3, 3, 'staff', 'staff@gmail.com', 'staff', 'staff', '1234', '1234'),
-(4, 4, 'user', 'user@gmail.com', 'user', 'user', '1234', '1234');
+INSERT INTO `users` (`user_id`, `role`, `nama`, `email`, `username`, `password`, `no_ktp`, `no_hp`) VALUES
+(1, 'admin', 'admin', 'admin@gmail.com', 'admin', 'admin', '1234', '1234'),
+(2, 'manager', 'manager', 'manager@gmail.com', 'manager', 'manager', '1234', '1234'),
+(3, 'staff', 'staff', 'staff@gmail.com', 'staff', 'staff', '1234', '1234');
 
 --
 -- Indexes for dumped tables
@@ -395,7 +413,9 @@ ALTER TABLE `fasilitas`
 -- Indexes for table `jenis_kamar`
 --
 ALTER TABLE `jenis_kamar`
-  ADD PRIMARY KEY (`jenis_kamar_id`);
+  ADD PRIMARY KEY (`jenis_kamar_id`),
+  ADD KEY `tempat_tidur_id` (`tempat_tidur_id`),
+  ADD KEY `harga` (`harga`);
 
 --
 -- Indexes for table `jenis_tamu`
@@ -409,7 +429,8 @@ ALTER TABLE `jenis_tamu`
 ALTER TABLE `kamar`
   ADD PRIMARY KEY (`kamar_id`),
   ADD KEY `jenis_kamar_id` (`jenis_kamar_id`),
-  ADD KEY `tempat_tidur_id` (`tempat_tidur_id`);
+  ADD KEY `tempat_tidur_id` (`tempat_tidur_id`),
+  ADD KEY `harga` (`harga`);
 
 --
 -- Indexes for table `pegawai`
@@ -422,15 +443,18 @@ ALTER TABLE `pegawai`
 -- Indexes for table `pelanggan`
 --
 ALTER TABLE `pelanggan`
-  ADD PRIMARY KEY (`pelanggan_id`);
+  ADD PRIMARY KEY (`pelanggan_id`),
+  ADD KEY `kamar_id` (`kamar_id`),
+  ADD KEY `harga` (`harga`);
 
 --
 -- Indexes for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
   ADD PRIMARY KEY (`pembayaran_id`),
-  ADD KEY `reservasi_id` (`reservasi_id`),
-  ADD KEY `pegawai_id` (`pegawai_id`);
+  ADD KEY `pelanggan_id` (`pelanggan_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `kamar_id` (`jenis_kamar_id`);
 
 --
 -- Indexes for table `pemesanan_fasilitas`
@@ -460,7 +484,8 @@ ALTER TABLE `roles`
 --
 ALTER TABLE `tarif`
   ADD PRIMARY KEY (`tarif_id`),
-  ADD KEY `jenis_kamar_id` (`jenis_kamar_id`);
+  ADD KEY `jenis_kamar_id` (`jenis_kamar_id`),
+  ADD KEY `tempat_tidur_id` (`tempat_tidur_id`);
 
 --
 -- Indexes for table `tempat_tidur`
@@ -473,7 +498,7 @@ ALTER TABLE `tempat_tidur`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`user_id`),
-  ADD KEY `role_id` (`role_id`);
+  ADD KEY `role_id` (`role`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -507,7 +532,7 @@ ALTER TABLE `fasilitas`
 -- AUTO_INCREMENT for table `jenis_kamar`
 --
 ALTER TABLE `jenis_kamar`
-  MODIFY `jenis_kamar_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `jenis_kamar_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `jenis_tamu`
@@ -519,7 +544,7 @@ ALTER TABLE `jenis_tamu`
 -- AUTO_INCREMENT for table `kamar`
 --
 ALTER TABLE `kamar`
-  MODIFY `kamar_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `kamar_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `pegawai`
@@ -531,13 +556,13 @@ ALTER TABLE `pegawai`
 -- AUTO_INCREMENT for table `pelanggan`
 --
 ALTER TABLE `pelanggan`
-  MODIFY `pelanggan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `pelanggan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `pembayaran_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `pembayaran_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `pemesanan_fasilitas`
@@ -561,19 +586,19 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `tarif`
 --
 ALTER TABLE `tarif`
-  MODIFY `tarif_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `tarif_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tempat_tidur`
 --
 ALTER TABLE `tempat_tidur`
-  MODIFY `tempat_tidur_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `tempat_tidur_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
@@ -594,11 +619,18 @@ ALTER TABLE `detail_reservasi`
   ADD CONSTRAINT `detail_reservasi_ibfk_2` FOREIGN KEY (`reservasi_id`) REFERENCES `reservasi` (`reservasi_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `jenis_kamar`
+--
+ALTER TABLE `jenis_kamar`
+  ADD CONSTRAINT `jenis_kamar_ibfk_1` FOREIGN KEY (`tempat_tidur_id`) REFERENCES `tempat_tidur` (`tempat_tidur_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `kamar`
 --
 ALTER TABLE `kamar`
   ADD CONSTRAINT `kamar_ibfk_1` FOREIGN KEY (`jenis_kamar_id`) REFERENCES `jenis_kamar` (`jenis_kamar_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `kamar_ibfk_2` FOREIGN KEY (`tempat_tidur_id`) REFERENCES `tempat_tidur` (`tempat_tidur_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `kamar_ibfk_2` FOREIGN KEY (`tempat_tidur_id`) REFERENCES `tempat_tidur` (`tempat_tidur_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `kamar_ibfk_3` FOREIGN KEY (`harga`) REFERENCES `jenis_kamar` (`harga`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `pegawai`
@@ -607,11 +639,19 @@ ALTER TABLE `pegawai`
   ADD CONSTRAINT `pegawai_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`role_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `pelanggan`
+--
+ALTER TABLE `pelanggan`
+  ADD CONSTRAINT `pelanggan_ibfk_1` FOREIGN KEY (`kamar_id`) REFERENCES `kamar` (`kamar_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pelanggan_ibfk_2` FOREIGN KEY (`harga`) REFERENCES `jenis_kamar` (`harga`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  ADD CONSTRAINT `pembayaran_ibfk_1` FOREIGN KEY (`reservasi_id`) REFERENCES `reservasi` (`reservasi_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `pembayaran_ibfk_2` FOREIGN KEY (`pegawai_id`) REFERENCES `pegawai` (`pegawai_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `pembayaran_ibfk_1` FOREIGN KEY (`pelanggan_id`) REFERENCES `pelanggan` (`pelanggan_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pembayaran_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pembayaran_ibfk_4` FOREIGN KEY (`jenis_kamar_id`) REFERENCES `kamar` (`kamar_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `pemesanan_fasilitas`
@@ -632,13 +672,8 @@ ALTER TABLE `reservasi`
 -- Constraints for table `tarif`
 --
 ALTER TABLE `tarif`
-  ADD CONSTRAINT `tarif_ibfk_1` FOREIGN KEY (`jenis_kamar_id`) REFERENCES `jenis_kamar` (`jenis_kamar_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `users`
---
-ALTER TABLE `users`
-  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`role_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `tarif_ibfk_1` FOREIGN KEY (`jenis_kamar_id`) REFERENCES `jenis_kamar` (`jenis_kamar_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tarif_ibfk_2` FOREIGN KEY (`tempat_tidur_id`) REFERENCES `tempat_tidur` (`tempat_tidur_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
