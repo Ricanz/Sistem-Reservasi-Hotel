@@ -17,11 +17,15 @@ if (isset($_POST['submit'])) {
     //insert ke tabel
     $query = "INSERT INTO pelanggan	values('', '$nama_pelanggan', '$no_identitas', '$no_hp', '$alamat','$email', '$orang', '$status', '$kamar_id', '$tgl_masuk', '$tgl_keluar', '$hasil[0]')";
 
+    $query1 = "UPDATE kamar
+    SET status_kamar = 'tidak tersedia'
+    WHERE kamar_id = $kamar_id";
     //update total jenis kamar
-    var_dump($query);
+    // var_dump($query);
     // $sql = mysqli_query($conn, "INSERT INTO kamar (jenis_kamar_id, tempat_tidur_id, no_kamar, lantai, bebas_rokok, status_kamar, status_kamar, tgl_masuk, tgl_keluar) 
     // VALUES('$jenis_kamar_id', '$tempat_tidur_id', '$no_kamar', '$lantai', '$bebas_rokok','$status_kamar', '$tgl_masuk', '$tgl_keluar')");
 
+    $sql = mysqli_query($conn, $query1) or die(mysqli_error());
     $sql = mysqli_query($conn, $query) or die(mysqli_error());
     if ($sql) {
         $pesan = "Data kamar berhasil ditambah!";
@@ -105,18 +109,18 @@ if (isset($_POST['submit'])) {
                                             <label for="orang">Total Pengunjung</label>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="form-floating">
+                                    <!-- <div class="col-md-4">
+                                        <div class="form-floating"> -->
                                             <input class="form-control" id="status" type="hidden" placeholder="Masukkan Lantai" name="status" value="0">
-                                            <label for="status">Status</label>
-                                        </div>
-                                    </div>
+                                            <!-- <label for="status">Status</label> -->
+                                        <!-- </div>
+                                    </div> -->
                                     <div class="col-md-4">
                                         <div class="form-floating">
                                             <select class="form-select" aria-label="Default select example" name="kamar_id">
                                                 <option selected>-- Pilih Kamar --</option>
                                                 <?php
-                                                $query = "SELECT kamar_id, no_kamar FROM kamar ORDER BY kamar_id";
+                                                $query = "SELECT * FROM kamar WHERE status_kamar='tersedia'";
                                                 $sql = mysqli_query($conn, $query);
 
                                                 while ($hasil = mysqli_fetch_array($sql)) {

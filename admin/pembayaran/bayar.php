@@ -21,6 +21,9 @@ if (isset($_POST['submit'])) {
     SET status = 1
     WHERE pelanggan_id = $pelanggan_id";
 
+    $query2 = "UPDATE kamar
+    SET status_kamar = 'tersedia'
+    WHERE kamar_id = $kamar_id";
     // insert ke tabel
     $query = "INSERT INTO pembayaran values('', '$pelanggan_id', '$user_id', '$nomor_nota', '$hari', '$kamar_id', '$total_awal', '$pajak', '$total_akhir', '$bayar', '$kembalian', '$tgl_bayar')";
 
@@ -34,6 +37,7 @@ if (isset($_POST['submit'])) {
 
     $sql = mysqli_query($conn, $query) or die(mysqli_error());
     $sql = mysqli_query($conn, $query1) or die(mysqli_error());
+    $sql = mysqli_query($conn, $query2) or die(mysqli_error());
     // $sql2 = mysqli_query($conn, $query1) or die(mysqli_error());
     if ($sql) {
         $pesan = "Data kamar berhasil ditambah!";
@@ -73,7 +77,7 @@ if (isset($_POST['submit'])) {
                             DataTable Example
                         </div>
                         <div class="card-body">
-                        <?php
+                            <?php
                             // Display selected user data based on id
                             // Getting id from url
                             $id = $_GET['id'];
@@ -93,12 +97,11 @@ if (isset($_POST['submit'])) {
                                 $tgl_masuk = $data['tgl_masuk'];
                                 $tgl_keluar = $data['tgl_keluar'];
                                 $kamars_id = $data['kamar_id'];
-                                
                             }
                             ?>
                             <form method="post" action="" name="submit" id="submit">
                                 <div class="row mb-3">
-                                <input class="form-control" id="user_id" type="hidden" placeholder="Masukkan Lantai" name="user_id" value="1">
+                                    <input class="form-control" id="user_id" type="hidden" placeholder="Masukkan Lantai" name="user_id" value="1">
                                     <div class="col-md-4">
                                         <div class="form-floating mb-3 mb-md-0">
                                             <input class="form-control" id="nama_pelanggan" type="text" placeholder="Masukkan Nomor Kamar" name="nama_pelanggan" value="<?php echo $nama_pelanggan ?>" readonly>
@@ -163,7 +166,7 @@ if (isset($_POST['submit'])) {
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-floating">
-                                            <select class="form-select" aria-label="Default select example" name="kamar_id" readonly>
+                                            <select class="form-select" aria-label="Default select example" name="" disabled>
                                                 <option selected>-- Pilih Kamar --</option>
                                                 <?php
                                                 $query = "SELECT kamar_id, no_kamar FROM kamar ORDER BY kamar_id";
@@ -173,13 +176,14 @@ if (isset($_POST['submit'])) {
                                                     $kamar_id = $hasil['kamar_id'];
                                                     $no_kamar = $hasil['no_kamar'];
                                                 ?>
-                                                    <option value="<?php echo $kamar_id ?>" <?php 
-                                                    if($kamar_id == $kamars_id){ 
-                                                        echo "selected"; } ?> readonly
-                                                        ><?php echo $no_kamar ?></option>
+                                                    <option value="<?php echo $kamar_id ?>" <?php
+                                                                                            if ($kamar_id == $kamars_id) {
+                                                                                                echo "selected";
+                                                                                            } ?> readonly><?php echo $no_kamar ?></option>
                                                 <?php } ?>
                                             </select>
                                             <label for="kamar_id">No Kamar</label>
+                                            <input class="form-control" id="kamar_id" type="hidden" placeholder="Masukkan Lantai" name="kamar_id" value="<?php echo $kamars_id ?>" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -230,19 +234,18 @@ if (isset($_POST['submit'])) {
     <!-- Scripts -->
     <?php include '../layout/scripts.php' ?>
     <script type="text/javascript" language="Javascript">
-    totals = document.submit.total_akhir.value;
-    document.submit.kembalian.value = totals;
-
-    bayars = document.submit.bayar.value;
-    document.submit.kembalian.value = bayars;
-
-    function OnChange(value){
         totals = document.submit.total_akhir.value;
-        bayars = document.submit.bayar.value;
-        total = bayars - totals;
-        document.submit.kembalian.value = total;
-    }
+        document.submit.kembalian.value = totals;
 
+        bayars = document.submit.bayar.value;
+        document.submit.kembalian.value = bayars;
+
+        function OnChange(value) {
+            totals = document.submit.total_akhir.value;
+            bayars = document.submit.bayar.value;
+            total = bayars - totals;
+            document.submit.kembalian.value = total;
+        }
     </script>
 
 </body>
