@@ -107,7 +107,7 @@ if (isset($_POST['submit'])) {
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-floating">
-                                            <input class="form-control" id="status" type="text" placeholder="Masukkan Lantai" name="status" value="Berisi">
+                                            <input class="form-control" id="status" type="hidden" placeholder="Masukkan Lantai" name="status" value="0">
                                             <label for="status">Status</label>
                                         </div>
                                     </div>

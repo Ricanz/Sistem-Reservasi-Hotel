@@ -60,7 +60,6 @@ if ($_SESSION['username'] == null) {
                                         <th>Kamar</th>
                                         <th>Tanggal Masuk</th>
                                         <th>Tanggal Keluar</th>
-                                        <th>Status Kamar</th>
                                         <th style="text-align: center;">Aksi</th>
                                     </tr>
                                 </thead>
@@ -76,7 +75,6 @@ if ($_SESSION['username'] == null) {
                                         <th>Kamar</th>
                                         <th>Tanggal Masuk</th>
                                         <th>Tanggal Keluar</th>
-                                        <th>Status Kamar</th>
                                         <th style="text-align: center;">Aksi</th>
                                     </tr>
                                 </tfoot>
@@ -109,7 +107,6 @@ if ($_SESSION['username'] == null) {
                                             <td><?php echo $email; ?></td>
                                             <td><?php echo $orang; ?></td>
                                             <td><?php echo $jenis_kamar; ?></td>
-                                            <td><?php echo $status; ?></td>
                                             <td><?php echo $tgl_masuk; ?></td>
                                             <td><?php echo $tgl_keluar; ?></td>
                                             <td style="text-align: center;">

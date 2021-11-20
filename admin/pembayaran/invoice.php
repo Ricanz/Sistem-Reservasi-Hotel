@@ -34,11 +34,13 @@
             $id = $_GET['id'];
 
             // Fetech user data based on id
-            $result = mysqli_query($conn, "SELECT * FROM pembayaran WHERE pembayaran_id=$id");
+            $result = mysqli_query($conn, "SELECT * FROM pembayaran  INNER JOIN pelanggan ON pembayaran.pelanggan_id = pelanggan.pelanggan_id INNER JOIN kamar ON pembayaran.jenis_kamar_id = kamar.kamar_id WHERE pembayaran_id=$id");
 
             while ($data = mysqli_fetch_array($result)) {
                 $id = $data['pembayaran_id'];
-                $pelanggan_id = $data['pelanggan_id'];
+                $pelanggan_id = $data['nama_pelanggan'];
+                $email = $data['email'];
+                $alamat = $data['alamat'];
                 $user_id = $data['user_id'];
                 $nomor_nota = $data['nomor_nota'];
                 $hari = $data['hari'];
@@ -62,9 +64,7 @@
                     <address>
                         <strong>Ditujukan ke:</strong><br>
                         <?php echo $pelanggan_id ?><br>
-                        1234 Main<br>
-                        Apt. 4B<br>
-                        Springfield, ST 54321
+                        <?php echo $alamat ?>
                     </address>
                 </div>
             </div>
@@ -73,7 +73,7 @@
                     <address>
                         <strong>Metode Pembayaran:</strong><br>
                         Cash (Langsung)<br>
-                        jsmith@email.com
+                        <?php echo $email ?>
                     </address>
                 </div>
                 <div class="col-xs-6 text-right">
@@ -149,3 +149,7 @@
         </div>
     </div>
 </div>
+
+<script>
+    window.print();
+</script>
