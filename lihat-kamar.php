@@ -51,9 +51,9 @@ include "config.php";
                     <div class="fog-low right">
                         <img src="user-layout/assets/img/fog-low.png" alt="">
                     </div>
-                    <div class="col-md-8 ml-auto mr-auto">
+                    <!-- <div class="col-md-8 ml-auto mr-auto">
                         <a href="#paper-kit" class="btn btn-danger btn-round">Book This Room</a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -114,7 +114,7 @@ include "config.php";
                 </div>
             </div>
         </div>
-        <div class="section landing-section">
+        <!-- <div class="section landing-section">
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 ml-auto mr-auto">
@@ -166,7 +166,7 @@ include "config.php";
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 
     <?php include 'user-layout/footer.php' ?>

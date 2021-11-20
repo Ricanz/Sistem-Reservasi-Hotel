@@ -11,13 +11,13 @@ if (isset($_POST['submit'])) {
     $harga = mysqli_query ($conn, "SELECT harga FROM jenis_kamar WHERE jenis_kamar_id = $jenis_kamar_id"); 
     $hasil = mysqli_fetch_row($harga);
     //insert ke tabel
-    $query = "UPDATE kamar SET jenis_kamar_id='$jenis_kamar_id',tempat_tidur_id='$tempat_tidur_id',no_kamar='$no_kamar',,
+    $query = "UPDATE kamar SET jenis_kamar_id='$jenis_kamar_id',tempat_tidur_id='$tempat_tidur_id',no_kamar='$no_kamar',
     lantai='$lantai',bebas_rokok='$bebas_rokok',status_kamar='$status_kamar',harga='$hasil[0]' WHERE kamar_id=$id";
 
     // $sql = mysqli_query($conn, "INSERT INTO kamar (jenis_kamar_id, tempat_tidur_id, no_kamar, lantai, bebas_rokok, status_kamar, status_kamar, tgl_masuk, tgl_keluar) 
     // VALUES('$jenis_kamar_id', '$tempat_tidur_id', '$no_kamar', '$lantai', '$bebas_rokok','$status_kamar', '$tgl_masuk', '$tgl_keluar')");
 
-
+    var_dump($query);
     $sql = mysqli_query($conn, $query) or die(mysqli_error());
     if ($sql) {
         $pesan = "Data jenis kamar berhasil ditambah!";

@@ -2,10 +2,9 @@
 
 if (isset($_POST['submit'])) {
     $jenis_tempat_tidur = $_POST['jenis_tempat_tidur'];
-    $jumlah_bed_tersedia = $_POST['jumlah_bed_tersedia'];
 
     //insert ke tabel
-    $query = "INSERT INTO tempat_tidur	values('','$jenis_tempat_tidur', '$jumlah_bed_tersedia')";
+    $query = "INSERT INTO tempat_tidur	values('','$jenis_tempat_tidur')";
 
     // $sql = mysqli_query($conn, "INSERT INTO kamar (jenis_kamar_id, tempat_tidur_id, no_kamar, lantai, bebas_rokok, status_kamar, status_kamar, tgl_masuk, tgl_keluar) 
     // VALUES('$jenis_kamar_id', '$tempat_tidur_id', '$no_kamar', '$lantai', '$bebas_rokok','$status_kamar', '$tgl_masuk', '$tgl_keluar')");
@@ -53,18 +52,12 @@ if (isset($_POST['submit'])) {
                             <form method="post" action="" name="submit">
                                 <input type="hidden" name="status_kamar" value="available">
                                 <div class="row mb-3">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-floating mb-3 mb-md-0">
                                         <div class="form-floating mb-3 mb-md-0">
                                             <input class="form-control" id="jenis_tempat_tidur" type="text" placeholder="Masukkan Nomor Kamar" name="jenis_tempat_tidur">
                                             <label for="jenis_tempat_tidur">Jenis Tempat Tidur</label>
                                         </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating mb-3 mb-md-0">
-                                            <input class="form-control" id="jumlah_bed_tersedia" type="text" placeholder="Masukkan Nomor Kamar" name="jumlah_bed_tersedia">
-                                            <label for="jumlah_bed_tersedia">Jumlah Tempat Tidur Tersedia</label>
                                         </div>
                                     </div>
                                 </div>

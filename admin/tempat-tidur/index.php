@@ -44,7 +44,6 @@ include "../../config.php";
                                         <tr>
                                             <th>No</th>
                                             <th>Jenis Tempat Tidur</th>
-                                            <th>Jumlah Tempat Tidur</th>
                                             <th style="text-align: center;">Aksi</th>
                                         </tr>
                                     </thead>
