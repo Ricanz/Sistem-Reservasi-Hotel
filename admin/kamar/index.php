@@ -94,7 +94,9 @@ if ($_SESSION['username'] == null) {
                                             <td><?php echo $no_kamar; ?></td>
                                             <td><?php echo $lantai; ?></td>
                                             <td><?php echo $bebas_rokok; ?></td>
-                                            <td><?php echo $status_kamar; ?></td>
+                                            <td style="text-align: center;">
+                                                <button class="btn btn-warning"><?php echo $status_kamar; ?></button>
+                                            </td>
                                             <td style="text-align: center;">
                                                 <a href="delete.php?id=<?php echo $kamar_id; ?>" class="btn btn-danger">Hapus</a>
                                                 <a href="edit.php?id=<?php echo $kamar_id; ?>" class="btn btn-success">Sunting</a>

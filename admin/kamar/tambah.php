@@ -57,7 +57,7 @@ if (isset($_POST['submit'])) {
                         </div>
                         <div class="card-body">
                             <form method="post" action="" name="submit">
-                                <input type="hidden" name="status_kamar" value="available">
+                                <input type="hidden" name="status_kamar" value="tersedia">
                                 <div class="row mb-3">
                                     <div class="col-md-6">
                                         <div class="form-floating mb-3 mb-md-0">
