@@ -79,7 +79,7 @@ if ($_SESSION['username'] == null) {
                                 <tbody>
                                     <?php
                                     $no = 1;
-                                    $query = "SELECT * FROM pembayaran  INNER JOIN pelanggan ON pembayaran.pelanggan_id = pelanggan.pelanggan_id INNER JOIN users ON pembayaran.user_id = users.user_id INNER JOIN jenis_kamar ON pembayaran.jenis_kamar_id = jenis_kamar.jenis_kamar_id";
+                                    $query = "SELECT * FROM pembayaran  INNER JOIN pelanggan ON pembayaran.pelanggan_id = pelanggan.pelanggan_id INNER JOIN kamar ON pembayaran.jenis_kamar_id = kamar.kamar_id";
                                     $sql = mysqli_query($conn, $query);
 
                                     while ($hasil = mysqli_fetch_array($sql)) {
@@ -87,7 +87,7 @@ if ($_SESSION['username'] == null) {
                                         $user_id = $hasil['nama'];
                                         $nomor_nota = $hasil['nomor_nota'];
                                         $hari = $hasil['hari'];
-                                        $jenis_kamar_id = $hasil['jenis_kamar'];
+                                        $jenis_kamar_id = $hasil['no_kamar'];
                                         $total_akhir = $hasil['total_akhir'];
                                         $bayar = $hasil['bayar'];
                                         $kembalian = $hasil['kembalian'];
