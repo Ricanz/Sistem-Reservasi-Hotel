@@ -76,7 +76,7 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                     Data Reservasi
                 </a>
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="../pembayaran/index.php">
                     <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                     Pembayaran
                 </a>

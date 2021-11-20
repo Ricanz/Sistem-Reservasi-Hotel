@@ -1,42 +1,17 @@
-<?php include "../../config.php";
+<?php
+include "../../config.php";
 
-if (isset($_POST['submit'])) {
-    $nama_pelanggan = $_POST['nama_pelanggan'];
-    $no_identitas = $_POST['no_identitas'];
-    $no_hp = $_POST['no_hp'];
-    $alamat = $_POST['alamat'];
-    $email = $_POST['email'];
-    $orang = $_POST['orang'];
-    $status = $_POST['status'];
-    $kamar_id = $_POST['kamar_id'];
-    $tgl_masuk = $_POST['tgl_masuk'];
-    $tgl_keluar = $_POST['tgl_keluar'];
+session_start();
 
-    //insert ke tabel
-    $query = "INSERT INTO pelanggan	values('', '$nama_pelanggan', '$no_identitas', '$no_hp', '$alamat','$email', '$orang', '$status', '$kamar_id', '$tgl_masuk', '$tgl_keluar')";
-
-    //update total jenis kamar
-    var_dump($query);
-    // $sql = mysqli_query($conn, "INSERT INTO kamar (jenis_kamar_id, tempat_tidur_id, no_kamar, lantai, bebas_rokok, status_kamar, status_kamar, tgl_masuk, tgl_keluar) 
-    // VALUES('$jenis_kamar_id', '$tempat_tidur_id', '$no_kamar', '$lantai', '$bebas_rokok','$status_kamar', '$tgl_masuk', '$tgl_keluar')");
-
-
-    $sql = mysqli_query($conn, $query) or die(mysqli_error());
-    if ($sql) {
-        $pesan = "Data kamar berhasil ditambah!";
-        header('Location: index.php?pesan=". $pesan ."');
-    } else {
-        echo "<h2><font color=red>Data gagal ditambahkan</font></h2>";
-    }
-
-
-
-    // var_dump($query, $sql);
+if ($_SESSION['username'] == null) {
+    header("Location: ../../login.php");
+    exit();
 }
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 
 <!-- Head -->
 <?php include '../layout/head.php' ?>
@@ -52,103 +27,92 @@ if (isset($_POST['submit'])) {
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
+                    <h1 class="mt-4"> <?php echo "Selamat Datang," . $_SESSION['username'] . "!" ?> </h1>
+                    <h1 class="mt-4">Data Kamar </h1>
+                    <?php
+                    error_reporting(0);
+                    if ($_GET['pesan'] != NULL) {
+                        echo "
+                            <div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                                <strong> Berhasil </strong>
+                                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                            </div>";
+                    } else {
+                    }
 
-                    <h1 class="mt-4">Pembayaran</h1>
+                    ?>
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table me-1"></i>
                             DataTable Example
                         </div>
                         <div class="card-body">
-                            <form method="post" action="" name="submit">
-                                <div class="row mb-3">
-                                    <div class="col-md-4">
-                                        <div class="form-floating mb-3 mb-md-0">
-                                            <input class="form-control" id="nama_pelanggan" type="text" placeholder="Masukkan Nomor Kamar" name="nama_pelanggan">
-                                            <label for="nama_pelanggan">Nama Pelanggan</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-floating">
-                                            <input class="form-control" id="no_identitas" type="text" placeholder="Masukkan Lantai" name="no_identitas">
-                                            <label for="no_identitas">Nomor Identitas</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-floating">
-                                            <input class="form-control" id="no_hp" type="text" placeholder="Masukkan Lantai" name="no_hp">
-                                            <label for="no_hp">Nomor Handphone</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-12">
-                                        <div class="form-floating mb-3 mb-md-0">
-                                            <input class="form-control" id="alamat" type="text" placeholder="Masukkan Nomor Kamar" name="alamat">
-                                            <label for="alamat">Alamat Pelanggan</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-12">
-                                        <div class="form-floating mb-3 mb-md-0">
-                                            <input class="form-control" id="email" type="text" placeholder="Masukkan Nomor Kamar" name="email">
-                                            <label for="email">Email</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-4">
-                                        <div class="form-floating mb-3 mb-md-0">
-                                            <input class="form-control" id="orang" type="text" placeholder="Masukkan Nomor Kamar" name="orang">
-                                            <label for="orang">Total Pengunjung</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-floating">
-                                            <input class="form-control" id="status" type="text" placeholder="Masukkan Lantai" name="status" value="Berisi">
-                                            <label for="status">Status</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-floating">
-                                            <select class="form-select" aria-label="Default select example" name="kamar_id">
-                                                <option selected>-- Pilih Kamar --</option>
-                                                <?php
-                                                $query = "SELECT kamar_id, no_kamar FROM kamar ORDER BY kamar_id";
-                                                $sql = mysqli_query($conn, $query);
+                            <table id="datatablesSimple">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Pelanggan</th>
+                                        <th>Nota</th>
+                                        <th>Lama Hari</th>
+                                        <th>Jenis Kamar</th>
+                                        <th>Total</th>
+                                        <th>Bayar</th>
+                                        <th>Kembalian</th>
+                                        <th>Tanggal Bayar</th>
+                                        <th style="text-align: center;">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Pelanggan</th>
+                                        <th>Nota</th>
+                                        <th>Lama Hari</th>
+                                        <th>Jenis Kamar</th>
+                                        <th>Total</th>
+                                        <th>Bayar</th>
+                                        <th>Kembalian</th>
+                                        <th>Tanggal Bayar</th>
+                                        <th style="text-align: center;">Aksi</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    <?php
+                                    $no = 1;
+                                    $query = "SELECT * FROM pembayaran  INNER JOIN pelanggan ON pembayaran.pelanggan_id = pelanggan.pelanggan_id INNER JOIN users ON pembayaran.user_id = users.user_id INNER JOIN jenis_kamar ON pembayaran.jenis_kamar_id = jenis_kamar.jenis_kamar_id";
+                                    $sql = mysqli_query($conn, $query);
 
-                                                while ($hasil = mysqli_fetch_array($sql)) {
-                                                    $kamar_id = $hasil['kamar_id'];
-                                                    $no_kamar = $hasil['no_kamar'];
-                                                ?>
-                                                    <option value="<?php echo $kamar_id ?>"><?php echo $no_kamar ?></option>
-                                                <?php } ?>
-                                            </select>
-                                            <label for="tempat_tidur_id">No Kamar</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <div class="form-floating mb-3 mb-md-0">
-                                            <input class="form-control" id="tgl_masuk" type="date" placeholder="Masukkan Nomor Kamar" name="tgl_masuk">
-                                            <label for="tgl_masuk">Tanggal Masuk</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating mb-3 mb-md-0">
-                                            <input class="form-control" id="tgl_keluar" type="date" placeholder="Masukkan Nomor Kamar" name="tgl_keluar">
-                                            <label for="tgl_keluar">Tanggal Keluar</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mt-4 mb-0">
-                                    <div class="d-grid">
-                                        <button type="submit" name="submit" class="btn btn-primary btn-block">Tambah Pengunjung</button>
-                                    </div>
-                                </div>
-                            </form>
+                                    while ($hasil = mysqli_fetch_array($sql)) {
+                                        $pelanggan_id = $hasil['nama_pelanggan'];
+                                        $user_id = $hasil['nama'];
+                                        $nomor_nota = $hasil['nomor_nota'];
+                                        $hari = $hasil['hari'];
+                                        $jenis_kamar_id = $hasil['jenis_kamar'];
+                                        $total_akhir = $hasil['total_akhir'];
+                                        $bayar = $hasil['bayar'];
+                                        $kembalian = $hasil['kembalian'];
+                                        $tgl_bayar = $hasil['tgl_bayar'];
+                                    ?>
+                                        <tr>
+                                            <td><?php echo $no; ?></td>
+                                            <td><?php echo $pelanggan_id; ?></td>
+                                            <td><?php echo $nomor_nota; ?></td>
+                                            <td><?php echo $hari; ?></td>
+                                            <td><?php echo $jenis_kamar_id; ?></td>
+                                            <td><?php echo $total_akhir; ?></td>
+                                            <td><?php echo $bayar; ?></td>
+                                            <td><?php echo $kembalian; ?></td>
+                                            <td><?php echo $tgl_bayar; ?></td>
+                                            <td style="text-align: center;">
+                                                <a href="delete.php?id=<?php echo $kamar_id; ?>" class="btn btn-danger">Hapus</a>
+                                                <a href="edit.php?id=<?php echo $kamar_id; ?>" class="btn btn-success">Sunting</a>
+                                            </td>
+                                        </tr>
+                                    <?php $no++;
+                                    } ?>
+
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -159,7 +123,6 @@ if (isset($_POST['submit'])) {
     </div>
     <!-- Scripts -->
     <?php include '../layout/scripts.php' ?>
-
 </body>
 
 </html>

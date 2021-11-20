@@ -67,12 +67,13 @@ if (isset($_POST['submit'])) {
                                             <select class="form-select" aria-label="Default select example" name="jenis_kamar_id">
                                                 <option selected>-- Pilih Jenis Kamar --</option>
                                                 <?php
-                                                $query = "SELECT jenis_kamar_id, jenis_kamar FROM jenis_kamar ORDER BY jenis_kamar_id";
+                                                $query = "SELECT jenis_kamar_id, jenis_kamar, harga FROM jenis_kamar ORDER BY jenis_kamar_id";
                                                 $sql = mysqli_query($conn, $query);
 
                                                 while ($hasil = mysqli_fetch_array($sql)) {
                                                     $jenis_kamar = $hasil['jenis_kamar'];
                                                     $jenis_kamar_id = $hasil['jenis_kamar_id'];
+                                                    $harga = $hasil['harga'];
                                                 ?>
                                                     <option value="<?php echo $jenis_kamar_id ?>"><?php echo $jenis_kamar ?></option>
                                                 <?php } ?>

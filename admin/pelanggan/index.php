@@ -113,7 +113,8 @@ if ($_SESSION['username'] == null) {
                                             <td><?php echo $tgl_keluar; ?></td>
                                             <td style="text-align: center;">
                                                 <a href="delete.php?id=<?php echo $pelanggan_id; ?>" class="btn btn-danger">Hapus</a>
-                                                <a href="edit.php?id=<?php echo $oelanggan_id; ?>" class="btn btn-success">Sunting</a>
+                                                <a href="edit.php?id=<?php echo $pelanggan_id; ?>" class="btn btn-success">Sunting</a>
+                                                <a href="../pembayaran/bayar.php?id=<?php echo $pelanggan_id; ?>" class="btn btn-warning">Checkout</a>
                                             </td>
                                         </tr>
                                     <?php $no++;
